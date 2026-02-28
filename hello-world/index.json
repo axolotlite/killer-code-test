@@ -1,0 +1,17 @@
+{
+    "title": "Hello World",
+    "description": "First killershell environment test",
+    "details": {
+      "intro": {
+        "text": "intro.md"
+      },
+      "steps": [
+        {
+          "text": "step1.md"
+        }
+      ]
+    },
+    "backend": {
+      "imageid": "ubuntu"
+    }
+}
