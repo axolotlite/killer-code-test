@@ -13,7 +13,8 @@
       ],
       "assets": {
         "host01": [
-          {"file": "kube-apiserver.yaml", "target": "/etc/kubernetes/manifests/"}
+            {"file": "kube-apiserver.yaml", "target": "/etc/kubernetes/manifests/"},
+            {"file": "kube-controller-manager.yaml", "target": "/etc/kubernetes/manifests/"}
         ]
       }
     },
