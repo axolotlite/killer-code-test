@@ -13,7 +13,7 @@
       ],
       "assets": {
         "controlplane": [
-          {"file": "kube-apiserver.yaml", "target": "/etc/kubernetes/manifests/kube-apiserver.yaml"}
+          {"file": "kube-apiserver.yaml", "target": "/etc/kubernetes/manifests/"}
         ]
       }
     },
