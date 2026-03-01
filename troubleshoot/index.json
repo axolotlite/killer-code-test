@@ -10,9 +10,14 @@
           "text": "step1/text.md",
           "verify": "step1/verify.sh"
         }
-      ]
+      ],
+      "assets": {
+        "controlplane": [
+          {"file": "kube-apiserver.yaml", "target": "/etc/kubernetes/manifests/kube-apiserver.yaml"}
+        ]
+      }
     },
     "backend": {
-      "imageid": "kubernetes-kubeadm-1node-rapid"
+      "imageid": "kubernetes-kubeadm-1node"
     }
 }
