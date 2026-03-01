@@ -9,6 +9,10 @@
         {
           "text": "step1.md",
           "verify": "verify.sh"
+        },
+        {
+          "text": "step2.md",
+          "verify": "verify.sh"
         }
       ]
     },
