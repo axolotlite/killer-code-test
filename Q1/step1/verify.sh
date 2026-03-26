@@ -38,22 +38,35 @@ check_k8s_resource() {
   return 0
 }
 
-if check_k8s_resource namespace postgres; then
-  echo "Namespace exists"
+if check_k8s_resource namespace $NS; then
+  echo "Namespace $NS exists"
 else
-  echo "Namespace missing"
+  echo "Namespace $NS is missing"
 fi
 
-kubectl get deploy -n $NS $DEPLO
+if check_k8s_resource deployment $DEPLOYMENT $NS; then
+  echo "Deployment $DEPLOYMENT exists in $NS"
+else
+  echo "Deployment $DEPLOYMENT doesn't exist in $NS"
+  exit 1
+fi
 
-if check_k8s_resource pv postgres postgres "" '{.spec.accessModes[0]}' $PV_ACCESS; then
+if check_k8s_resource pv postgres-pv postgres "" '{.spec.accessModes[0]}' $PV_ACCESS; then
   echo "Access mode OK"
 else
   echo "Access mode NOT OK"
+  exit 1
 fi
 
-if check_k8s_resource pv postgres postgres "" '{.spec.resources.requests.storage}' $PV_SIZE; then
+if check_k8s_resource pv postgres-pv postgres "" '{.spec.capacity.storage}' $PV_SIZE; then
   echo "PV Size OK"
 else
   echo "PV Size NOT OK"
+  exit 1
+fi
+if check_k8s_resource pvc postgres postgres "" '{.spec.resources.requests.storage}' $PV_SIZE; then
+  echo "PVC Size OK"
+else
+  echo "PVC Size NOT OK"
+  exit 1
 fi

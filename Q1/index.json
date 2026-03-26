@@ -19,7 +19,7 @@
             {"file": "namespace.yaml", "target": "/tmp/init/namespace.yaml"},
             {"file": "pvc.yaml", "target": "/tmp/init/pvc.yaml"},
             {"file": "pv.yaml", "target": "/tmp/init/pv.yaml"},
-            {"file": "deployment.yaml", "target": "~/deployment.yaml"}
+            {"file": "deployment.yaml", "target": "~/"}
         ]
       }
     },
