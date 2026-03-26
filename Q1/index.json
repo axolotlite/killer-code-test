@@ -1,0 +1,28 @@
+{
+    "title": "Claim Existing PVC",
+    "description": "Assign an existing PVC to a newly created deployment",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "init.sh"
+      },
+      "steps": [
+        {
+            "text": "step1/text.md",
+            "background": "step1/init.sh"
+        }
+      ],
+      "assets": {
+        "host01": [
+            {"file": "deployment.yaml", "target": "/tmp/init/deployment.yaml"},
+            {"file": "namespace.yaml", "target": "/tmp/init/namespace.yaml"},
+            {"file": "pvc.yaml", "target": "/tmp/init/pvc.yaml"},
+            {"file": "pv.yaml", "target": "/tmp/init/pv.yaml"},
+            {"file": "deployment.yaml", "target": "~/deployment.yaml"}
+        ]
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    }
+}
