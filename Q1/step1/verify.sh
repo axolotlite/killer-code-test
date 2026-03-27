@@ -3,6 +3,7 @@
 NS="postgres"
 PVC="postgres"
 DEPLOYMENT="postgres"
+PV_NAME="postgres-pv"
 PV_SIZE="250Mi"
 PV_ACCESS="ReadWriteOnce"
 
@@ -64,9 +65,17 @@ else
   echo "PV Size NOT OK"
   exit 1
 fi
+
 if check_k8s_resource pvc postgres postgres "" '{.spec.resources.requests.storage}' $PV_SIZE; then
   echo "PVC Size OK"
 else
   echo "PVC Size NOT OK"
+  exit 1
+fi
+
+if check_k8s_resource pvc postgres postgres "" '{.spec.volumeName}' $PV_NAME; then
+  echo "PVC is using correct PV"
+else
+  echo "PVC is using the incorrect PV"
   exit 1
 fi
