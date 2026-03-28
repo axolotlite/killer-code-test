@@ -1,4 +1,4 @@
-**postgres Persistent Volume Recovery**
+**Postgres Persistent Volume Recovery**
 Start by ssh-ing into the controlplane node:
 ```
 ssh controlplane

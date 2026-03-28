@@ -30,6 +30,10 @@ for BASE_POD in "${PODS[@]}"; do
     
     # 2. Check CPU threshold is between 100m and 200m
     # Format: check_k8s_resource <kind> <name> <ns> <sel> <jsonpath> <expected_val> <operator>
+    check_k8s_resource "pod" "$POD" "$NS" "" "{.spec.containers[0].resources.limits.cpu}" "$RANGE" "range"
+
+    check_k8s_resource "pod" "$POD" "$NS" "" "{.spec.containers[0].resources.limits.memory}" "$RANGE" "range"
+
     check_k8s_resource "pod" "$POD" "$NS" "" "{.spec.containers[0].resources.requests.cpu}" "$RANGE" "range"
 
     check_k8s_resource "pod" "$POD" "$NS" "" "{.spec.containers[0].resources.requests.memory}" "$RANGE" "range"
