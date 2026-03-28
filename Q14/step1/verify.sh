@@ -36,7 +36,7 @@ check_k8s_resource sc "$SC_NAME" "" "" '{.provisioner}' "$EXPECTED_PROVISIONER"
 check_k8s_resource sc "$SC_NAME" "" "" '{.volumeBindingMode}' "$EXPECTED_MODE"
 
 # 4. Default annotation
-check_k8s_resource sc "$SC_NAME" "" "" '{.metadata.annotations.storageclass.kubernetes.io/is-default-class}' "$EXPECTED_DEFAULT"
+check_k8s_resource sc "$SC_NAME" "" "" '{.metadata.annotations.storageclass\.kubernetes\.io/is-default-class}' "$EXPECTED_DEFAULT"
 
 # 5. Check for other defaults (Custom scripted check utilizing global counters)
 other_defaults=$(kubectl get sc -o jsonpath='{range .items[*]}{.metadata.name}{"="}{.metadata.annotations.storageclass.kubernetes.io/is-default-class}{"\n"}{end}' | grep "=true" | grep -v "^$SC_NAME=" || true)
@@ -46,7 +46,7 @@ if [ -n "$other_defaults" ]; then
   echo "$other_defaults" | tee -a "$OUTPUT_FILE"
   ((FAIL_COUNT++))
 else
-  log "PASS" "No other default StorageClasses found"
+  log "PASS" "Only one default StorageClasses found"
   ((PASS_COUNT++))
 fi
 
