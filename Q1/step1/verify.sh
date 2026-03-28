@@ -31,9 +31,6 @@ echo "" | tee -a "$OUTPUT_FILE"
 # 1. Namespace existence
 check_k8s_resource namespace "$NS"
 
-# 2. Deployment existence
-check_k8s_resource deployment "$DEPLOYMENT" "$NS"
-
 # 3. PV access mode (cluster-scoped, no namespace)
 check_k8s_resource pv "$PV_NAME" "" "" '{.spec.accessModes[0]}' "$PV_ACCESS"
 
@@ -45,6 +42,14 @@ check_k8s_resource pvc "$PVC" "$NS" "" '{.spec.resources.requests.storage}' "$PV
 
 # 6. PVC bound PV
 check_k8s_resource pvc "$PVC" "$NS" "" '{.spec.volumeName}' "$PV_NAME"
+
+# 7. check if the deployment exists
+check_k8s_resource deployment "$DEPLOYMENT" "$NS"
+
+# 8. check if the pv is added to volumes
+check_k8s_resource deployment "$DEPLOYMENT" "$NS" "{.spec.template.spec.volumes[0].volumeMounts[0].persistentVolumeClaim.claimName}" $PVC
+# 9. Check if the pvc is mounted correctly
+check_k8s_resource deployment "$DEPLOYMENT" "$NS" "{.spec.template.spec.containers[0].volumeMounts[0].mountPath}" "/var/lib/postgresql/data"
 
 # ==========================================
 # RESULTS SUMMARY

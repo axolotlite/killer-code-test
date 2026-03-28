@@ -11,7 +11,8 @@ Create a **PersistentVolumeClaim (PVC)** named `postgres`{{copy}} in the `postgr
 * **Access Mode:** `ReadWriteOnce`{{copy}}
 * **Storage:** `250Mi`{{copy}}
 
-Edit the **postgres Deployment file** located at `~/deployment.yaml`{{copy}} to use the PVC created in the previous step.
+Edit the **postgres Deployment file** located at `~/deployment.yaml`{{copy}}  
+Mount the PVC created in the previous step at `/var/lib/postgresql/data`{{copy}}
 
 Apply the updated **Deployment file** to the cluster.
 
