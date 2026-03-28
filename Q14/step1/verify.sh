@@ -1,12 +1,15 @@
 #!/bin/bash
 # verify.sh - StorageClass Validation
+OUTPUT_FILE="${OUTPUT_FILE:-$HOME/validation.log}"
 
 # 1. Source the utility library
 SCRIPT_DIR=""$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)""
 if [ -f "$SCRIPT_DIR/utility.sh" ]; then
   source "$SCRIPT_DIR/utility.sh"
 else
-  echo "[FATAL] utility.sh not found in $SCRIPT_DIR"
+  echo "[FATAL] utility.sh not found in $SCRIPT_DIR" | tee -a $OUTPUT_FILE
+  pwd | tee -a $OUTPUT_FILE
+  ls | tee -a $OUTPUT_FILE
   exit 1
 fi
 
