@@ -1,5 +1,5 @@
 #!/bin/bash
-# postgres-validate.sh - Postgres PVC/PV/Deployment Validation
+# postgres-validate.sh - Postgres Deployment and Storage Validation
 OUTPUT_FILE="${OUTPUT_FILE:-$HOME/validation.log}"
 
 # 1. Source the utility library
@@ -29,26 +29,16 @@ log "INFO" "Running Postgres Deployment and Storage Validations..."
 echo "" | tee -a "$OUTPUT_FILE"
 
 # 1. Namespace existence
-if check_k8s_resource namespace "$NS"; then
-  log "PASS" "Namespace $NS exists"
-else
-  log "FAIL" "Namespace $NS is missing"
-  ((FAIL_COUNT++))
-fi
+check_k8s_resource namespace "$NS"
 
 # 2. Deployment existence
-if check_k8s_resource deployment "$DEPLOYMENT" "$NS"; then
-  log "PASS" "Deployment $DEPLOYMENT exists in $NS"
-else
-  log "FAIL" "Deployment $DEPLOYMENT doesn't exist in $NS"
-  ((FAIL_COUNT++))
-fi
+check_k8s_resource deployment "$DEPLOYMENT" "$NS"
 
-# 3. PV access mode
-check_k8s_resource pv "$PV_NAME" "$NS" "" '{.spec.accessModes[0]}' "$PV_ACCESS"
+# 3. PV access mode (cluster-scoped, no namespace)
+check_k8s_resource pv "$PV_NAME" "" "" '{.spec.accessModes[0]}' "$PV_ACCESS"
 
 # 4. PV size
-check_k8s_resource pv "$PV_NAME" "$NS" "" '{.spec.capacity.storage}' "$PV_SIZE"
+check_k8s_resource pv "$PV_NAME" "" "" '{.spec.capacity.storage}' "$PV_SIZE"
 
 # 5. PVC size
 check_k8s_resource pvc "$PVC" "$NS" "" '{.spec.resources.requests.storage}' "$PV_SIZE"
