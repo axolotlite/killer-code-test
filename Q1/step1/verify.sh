@@ -47,9 +47,9 @@ check_k8s_resource pvc "$PVC" "$NS" "" '{.spec.volumeName}' "$PV_NAME"
 check_k8s_resource deployment "$DEPLOYMENT" "$NS"
 
 # 8. check if the pv is added to volumes
-check_k8s_resource deployment "$DEPLOYMENT" "$NS" "{.spec.template.spec.volumes[0].volumeMounts[0].persistentVolumeClaim.claimName}" $PVC
+check_k8s_resource deployment "$DEPLOYMENT" "$NS" "" "{.spec.template.spec.volumes[0].persistentVolumeClaim.claimName}" $PVC
 # 9. Check if the pvc is mounted correctly
-check_k8s_resource deployment "$DEPLOYMENT" "$NS" "{.spec.template.spec.containers[0].volumeMounts[0].mountPath}" "/var/lib/postgresql/data"
+check_k8s_resource deployment "$DEPLOYMENT" "$NS" "" "{.spec.template.spec.containers[0].volumeMounts[0].mountPath}" "/var/lib/postgresql/data"
 
 # ==========================================
 # RESULTS SUMMARY
