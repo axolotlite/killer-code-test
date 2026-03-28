@@ -2,7 +2,7 @@
 # verify.sh - StorageClass Validation
 
 # 1. Source the utility library
-SCRIPT_DIR="../assets"
+SCRIPT_DIR=""$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)""
 if [ -f "$SCRIPT_DIR/utility.sh" ]; then
   source "$SCRIPT_DIR/utility.sh"
 else
