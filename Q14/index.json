@@ -1,0 +1,18 @@
+{
+    "title": "Create a New Storage Class",
+    "description": "Creating a new StorageClass manifest and making it the default",
+    "details": {
+      "intro": {
+        "text": "intro.md"
+      },
+      "steps": [
+        {
+            "text": "step1/text.md",
+            "verify": "step1/verify.sh"
+        }
+      ]
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    }
+}
