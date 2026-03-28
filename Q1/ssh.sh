@@ -1,3 +1,2 @@
-#!/bin/bash
-
 ssh node01
+clear

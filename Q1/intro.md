@@ -1,6 +1,11 @@
 **postgres Persistent Volume Recovery**
 
-inspect the pods / deployments in the `postgres` namespace.
+Start by ssh-ing into the controlplane node:
+```{{copy}}
+ssh controlplane
+```
+
+You can inspect the pods / deployments in the `postgres` namespace.
 `kubectl get pods -n postgres`{{copy}}
 
 **Context**
