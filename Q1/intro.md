@@ -1,7 +1,10 @@
 **postgres Persistent Volume Recovery**
 
+inspect the pods / deployments in the `postgres` namespace.
+`kubectl get pods -n postgres`{{copy}}
+
 **Context**
-A user will "accidentally" delete the postgres Deployment in the `postgres` namespace. The deployment had been configured with persistent storage.
+A user has "accidentally" deleted the postgres Deployment in the `postgres` namespace. The deployment had been configured with persistent storage.
 
 Your responsibility is to restore the deployment while preserving the data by reusing the available PersistentVolume.
 
