@@ -1,81 +1,63 @@
 #!/bin/bash
+# postgres-validate.sh - Postgres PVC/PV/Deployment Validation
+OUTPUT_FILE="${OUTPUT_FILE:-$HOME/validation.log}"
 
+# 1. Source the utility library
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -f "$SCRIPT_DIR/utility.sh" ]; then
+  source "$SCRIPT_DIR/utility.sh"
+else
+  echo "[FATAL] utility.sh not found in $SCRIPT_DIR" | tee -a "$OUTPUT_FILE"
+  pwd | tee -a "$OUTPUT_FILE"
+  ls | tee -a "$OUTPUT_FILE"
+  exit 1
+fi
+
+# 2. Define expected state
 NS="postgres"
-PVC="postgres"
 DEPLOYMENT="postgres"
+PVC="postgres"
 PV_NAME="postgres-pv"
 PV_SIZE="250Mi"
 PV_ACCESS="ReadWriteOnce"
 
-check_k8s_resource() {
-  # Arguments
-  local kind="$1"
-  local name="$2"
-  local namespace="$3"
-  local selector="$4"
-  local jsonpath="$5"
-  local expected="$6"
+# ==========================================
+# EXECUTION BLOCK
+# ==========================================
 
-  # Build kubectl command
-  local cmd=("kubectl" "get" "$kind")
-  [ -n "$name" ] && cmd+=("$name")
-  [ -n "$namespace" ] && cmd+=("-n" "$namespace")
-  [ -n "$selector" ] && cmd+=("-l" "$selector")
+log "INFO" "Running Postgres Deployment and Storage Validations..."
+echo "" | tee -a "$OUTPUT_FILE"
 
-  if [ -n "$jsonpath" ]; then
-    cmd+=("-o" "jsonpath=$jsonpath")
-  fi
-
-  local output
-  if ! output=$("${cmd[@]}" 2>/dev/null); then
-    return 1
-  fi
-
-  if [ -n "$expected" ]; then
-    if [ "$output" != "$expected" ]; then
-      return 1
-    fi
-  fi
-  return 0
-}
-
-if check_k8s_resource namespace $NS; then
-  echo "Namespace $NS exists"
+# 1. Namespace existence
+if check_k8s_resource namespace "$NS"; then
+  log "PASS" "Namespace $NS exists"
 else
-  echo "Namespace $NS is missing"
+  log "FAIL" "Namespace $NS is missing"
+  ((FAIL_COUNT++))
 fi
 
-if check_k8s_resource deployment $DEPLOYMENT $NS; then
-  echo "Deployment $DEPLOYMENT exists in $NS"
+# 2. Deployment existence
+if check_k8s_resource deployment "$DEPLOYMENT" "$NS"; then
+  log "PASS" "Deployment $DEPLOYMENT exists in $NS"
 else
-  echo "Deployment $DEPLOYMENT doesn't exist in $NS"
-  exit 1
+  log "FAIL" "Deployment $DEPLOYMENT doesn't exist in $NS"
+  ((FAIL_COUNT++))
 fi
 
-if check_k8s_resource pv postgres-pv postgres "" '{.spec.accessModes[0]}' $PV_ACCESS; then
-  echo "Access mode OK"
-else
-  echo "Access mode NOT OK"
-  exit 1
-fi
+# 3. PV access mode
+check_k8s_resource pv "$PV_NAME" "$NS" "" '{.spec.accessModes[0]}' "$PV_ACCESS"
 
-if check_k8s_resource pv postgres-pv postgres "" '{.spec.capacity.storage}' $PV_SIZE; then
-  echo "PV Size OK"
-else
-  echo "PV Size NOT OK"
-  exit 1
-fi
+# 4. PV size
+check_k8s_resource pv "$PV_NAME" "$NS" "" '{.spec.capacity.storage}' "$PV_SIZE"
 
-if check_k8s_resource pvc postgres postgres "" '{.spec.resources.requests.storage}' $PV_SIZE; then
-  echo "PVC Size OK"
-else
-  echo "PVC Size NOT OK"
-  exit 1
-fi
+# 5. PVC size
+check_k8s_resource pvc "$PVC" "$NS" "" '{.spec.resources.requests.storage}' "$PV_SIZE"
 
-if check_k8s_resource pvc postgres postgres "" '{.spec.volumeName}' $PV_NAME; then
-  echo "PVC is using correct PV"
-else
-  echo "PVC is using the incorrect PV"
-  exit 1
-fi
+# 6. PVC bound PV
+check_k8s_resource pvc "$PVC" "$NS" "" '{.spec.volumeName}' "$PV_NAME"
+
+# ==========================================
+# RESULTS SUMMARY
+# ==========================================
+
+print_summary_and_exit

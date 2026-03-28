@@ -15,6 +15,7 @@
       ],
       "assets": {
         "host01": [
+            {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
             {"file": "deployment.yaml", "target": "/tmp/init/deployment.yaml"},
             {"file": "namespace.yaml", "target": "/tmp/init/namespace.yaml"},
             {"file": "pvc.yaml", "target": "/tmp/init/pvc.yaml"},
