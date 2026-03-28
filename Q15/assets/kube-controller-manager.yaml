@@ -48,6 +48,9 @@ spec:
       requests:
         cpu: 2m
         memory: 2Mi
+      limits:
+        cpu: 2m
+        memory: 2Mi
     startupProbe:
       failureThreshold: 24
       httpGet:
