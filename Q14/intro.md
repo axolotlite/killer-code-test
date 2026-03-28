@@ -1,4 +1,8 @@
-**CKA Lab 14: StorageClass Configuration**
+**StorageClass Configuration**
+Start by ssh-ing into the controlplane node:
+```
+ssh controlplane
+```{{copy}}
 
 ### StorageClass Configuration
 
@@ -10,3 +14,6 @@ You need to create a **new StorageClass** and configure it as the **default** fo
 * Create a **StorageClass** with a specific **provisioner**
 * Configure the **VolumeBindingMode**
 * Manage **default StorageClass** settings
+
+You can use the documentation:
+- https://kubernetes.io/
