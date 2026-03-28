@@ -13,7 +13,7 @@
       ],
       "assets": {
         "host01": [
-            {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"}
+            {"file": "../utility.sh", "target": "/var/run/kc-internal/scenario-service/"}
         ]
       }
     },
