@@ -46,7 +46,7 @@ spec:
       protocol: TCP
     resources:
       requests:
-        cpu: 2000m
+        cpu: 2m
     startupProbe:
       failureThreshold: 24
       httpGet:

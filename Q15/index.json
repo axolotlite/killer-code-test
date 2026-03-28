@@ -17,6 +17,7 @@
       ],
       "assets": {
         "host01": [
+            {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
             {"file": "kube-apiserver.yaml", "target": "/etc/kubernetes/manifests/"},
             {"file": "kube-controller-manager.yaml", "target": "/etc/kubernetes/manifests/"},
             {"file": "kube-scheduler.yaml", "target": "/etc/kubernetes/manifests/"}
