@@ -2,7 +2,7 @@
 # utility.sh - Reusable Kubernetes Validation Library
 
 OUTPUT_FILE="${OUTPUT_FILE:-$HOME/validation.log}"
-
+echo "utility updated"
 # Global Counters
 PASS_COUNT=0
 FAIL_COUNT=0
