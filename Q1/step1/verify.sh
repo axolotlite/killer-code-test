@@ -16,10 +16,11 @@ fi
 # 2. Define expected state
 NS="postgres"
 DEPLOYMENT="postgres"
-PVC="postgres"
+PVC="postgres-pvc"
 PV_NAME="postgres-pv"
 PV_SIZE="250Mi"
 PV_ACCESS="ReadWriteOnce"
+MOUNT_PATH="/var/lib/postgresql/data"
 
 # ==========================================
 # EXECUTION BLOCK
@@ -49,7 +50,7 @@ check_k8s_resource deployment "$DEPLOYMENT" "$NS"
 # 8. check if the pv is added to volumes
 check_k8s_resource deployment "$DEPLOYMENT" "$NS" "" "{.spec.template.spec.volumes[0].persistentVolumeClaim.claimName}" $PVC
 # 9. Check if the pvc is mounted correctly
-check_k8s_resource deployment "$DEPLOYMENT" "$NS" "" "{.spec.template.spec.containers[0].volumeMounts[0].mountPath}" "/var/lib/postgresql/data"
+check_k8s_resource deployment "$DEPLOYMENT" "$NS" "" "{.spec.template.spec.containers[0].volumeMounts[0].mountPath}" $MOUNT_PATH
 
 # ==========================================
 # RESULTS SUMMARY

@@ -6,7 +6,7 @@ A PersistentVolume already exists and is retained for reuse. Only one PV exists 
 
 ### Tasks
 
-Create a **PersistentVolumeClaim (PVC)** named `postgres`{{copy}} in the `postgres`{{copy}} namespace with the following specifications:
+Create a **PersistentVolumeClaim (PVC)** named `postgres-pvc`{{copy}} in the `postgres`{{copy}} namespace with the following specifications:
 
 * **Access Mode:** `ReadWriteOnce`{{copy}}
 * **Storage:** `250Mi`{{copy}}
