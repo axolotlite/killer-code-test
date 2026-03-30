@@ -22,19 +22,34 @@ echo "" | tee -a "$OUTPUT_FILE"
 # Task 1: List all cert-manager CRDs to /root/resources.yaml
 # ---------------------------------------------------------
 RESOURCES_FILE="/root/resources.yaml"
-
 if [ -f "$RESOURCES_FILE" ]; then
   log "PASS" "Resources file $RESOURCES_FILE exists"
   ((PASS_COUNT++))
 
-  # Check if standard cert-manager CRDs are present in the file
-  # E.g., certificates.cert-manager.io, issuers.cert-manager.io
-  if grep -q "certificates.cert-manager.io" "$RESOURCES_FILE" && grep -q "issuers.cert-manager.io" "$RESOURCES_FILE"; then
-    log "PASS" "File contains the expected cert-manager CRDs"
-    ((PASS_COUNT++))
+  # Dynamically fetch all cert-manager CRDs currently installed in the cluster
+  # Using custom-columns to get exactly the resource names (e.g., certificates.cert-manager.io)
+  CLUSTER_CRDS=$(kubectl get crd -o custom-columns=NAME:.metadata.name --no-headers | grep "cert-manager")
+
+  if [ -z "$CLUSTER_CRDS" ]; then
+    log "WARN" "No cert-manager CRDs found in the cluster to validate against!"
+    ((WARN_COUNT++))
   else
-    log "FAIL" "File does NOT appear to contain the correct cert-manager CRD list"
-    ((FAIL_COUNT++))
+    MISSING_CRDS=""
+    for crd in $CLUSTER_CRDS; do
+      # -F is used for literal string match (ignores regex characters like '.')
+      if ! grep -qF "$crd" "$RESOURCES_FILE"; then
+        MISSING_CRDS="$MISSING_CRDS $crd"
+      fi
+    done
+
+    # If the missing variable is still empty, they captured everything
+    if [ -z "$MISSING_CRDS" ]; then
+      log "PASS" "File contains all cert-manager CRDs present in the cluster"
+      ((PASS_COUNT++))
+    else
+      log "FAIL" "File is missing the following cert-manager CRDs: ${MISSING_CRDS}"
+      ((FAIL_COUNT++))
+    fi
   fi
 else
   log "FAIL" "Resources file $RESOURCES_FILE does NOT exist"
@@ -43,6 +58,7 @@ else
   log "FAIL" "Skipping content check for $RESOURCES_FILE"
   ((FAIL_COUNT++))
 fi
+
 
 # ---------------------------------------------------------
 # Task 2: Extract documentation for the `subject` field
