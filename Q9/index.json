@@ -1,0 +1,24 @@
+{
+    "title": "Install Container Runtime",
+    "description": "Install CIO-Dockerd on a node",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "init.sh"
+      },
+      "steps": [
+        {
+            "text": "step1/text.md",
+            "verify": "step1/verify.sh"
+        }
+      ],
+      "assets": {
+        "host01": [
+            {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"}
+        ]
+      }
+    },
+    "backend": {
+      "imageid": "ubuntu"
+    }
+}
