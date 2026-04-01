@@ -21,3 +21,6 @@ Install a **CNI** of your choice that meets the following criteria:
   ```text
   https://raw.githubusercontent.com/projectcalico/calico/refs/tags/v3.30.6/manifests/tigera-operator.yaml
   ```{{copy}}
+
+**Note:**  
+Ensure that the nodes are `Ready`
