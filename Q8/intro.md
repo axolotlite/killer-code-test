@@ -9,17 +9,17 @@ ssh controlplane
 **Context**
 You need to install a **CNI plugin** that supports **NetworkPolicies**. You can choose between **Flannel** or **Calico**.
 
-**Objectives**
+**Objectives**  
 
-* Understand **CNI Capabilties**
-* Install a CNI using a remote **manifest**
-* Verify **NetworkPolicy support**
+* Understand **CNI Capabilties**  
+* Install a CNI using a remote **manifest**  
+* Verify **NetworkPolicy support**  
 
-You can use the documentation:
+You can use the documentation:  
 - https://docs.tigera.io/
 
-keyword:
-* `quickstart`
-page keywords:
-* `step 2`
-* `install calico`
+keyword:  
+* `quickstart`  
+page keywords:  
+* `step 2`  
+* `install calico`  
