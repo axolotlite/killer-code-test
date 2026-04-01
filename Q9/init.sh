@@ -16,8 +16,7 @@ systemctl stop cri-docker 2>/dev/null
 systemctl disable cri-docker 2>/dev/null
 apt-get purge -y cri-dockerd 2>/dev/null
 
-# 3. Aggressively strip the required sysctls from ANY existing config files
-# The Killercoda base image might have these set in standard files (e.g., for Docker)
+rm /etc/sysctl.d/99-kubernetes-cri.conf
 sed -i '/net.bridge.bridge-nf-call-iptables/d' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null
 sed -i '/net.ipv6.conf.all.forwarding/d' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null
 sed -i '/net.ipv4.ip_forward/d' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null
