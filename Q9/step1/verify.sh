@@ -31,20 +31,21 @@ fi
 
 # ---------------------------------------------------------
 # Task 2: Check if cri-dockerd service is enabled and active
+# NOTE: The systemd unit is named 'cri-docker', not 'cri-dockerd'
 # ---------------------------------------------------------
-if systemctl is-enabled --quiet cri-dockerd 2>/dev/null; then
-  log "PASS" "cri-dockerd service is enabled"
+if systemctl is-enabled --quiet cri-docker 2>/dev/null; then
+  log "PASS" "cri-docker service is enabled"
   ((PASS_COUNT++))
 else
-  log "FAIL" "cri-dockerd service is NOT enabled"
+  log "FAIL" "cri-docker service is NOT enabled"
   ((FAIL_COUNT++))
 fi
 
-if systemctl is-active --quiet cri-dockerd 2>/dev/null; then
-  log "PASS" "cri-dockerd service is running (active)"
+if systemctl is-active --quiet cri-docker 2>/dev/null; then
+  log "PASS" "cri-docker service is running (active)"
   ((PASS_COUNT++))
 else
-  log "FAIL" "cri-dockerd service is NOT running"
+  log "FAIL" "cri-docker service is NOT running"
   ((FAIL_COUNT++))
 fi
 
@@ -67,7 +68,6 @@ check_sysctl_param() {
   fi
   
   # Check 2: Is it persistent? (Checking /etc/sysctl.conf and /etc/sysctl.d/*.conf)
-  # Uses a regex to tolerate spaces (e.g., 'net.ipv4.ip_forward = 1')
   if grep -hRE "^[[:space:]]*${param}[[:space:]]*=[[:space:]]*${expected}" /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null | grep -q .; then
     log "PASS" "sysctl $param is configured persistently"
     ((PASS_COUNT++))

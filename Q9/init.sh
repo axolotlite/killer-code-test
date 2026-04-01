@@ -1,52 +1,40 @@
 #!/bin/bash
-# init.sh - Prepares the Killercoda environment for the cri-dockerd SWITCH lab
+# init.sh - Prepares Killercoda environment for CKA Lab 09
 
-echo "Starting environment setup for cri-dockerd lab..."
+# 1. Download the cri-dockerd package
+CRI_DOCKERD_VERSION="0.3.15"
+UBUNTU_CODENAME=$(lsb_release -cs)
 
-# 1. Download the required .deb package for the user
-CRI_DOCKERD_VERSION="0.3.14"
-CRI_DOCKERD_URL="https://github.com/Mirantis/cri-dockerd/releases/download/v${CRI_DOCKERD_VERSION}/cri-dockerd_${CRI_DOCKERD_VERSION}.3-0.ubuntu-jammy_amd64.deb"
-DEB_PACKAGE_NAME="cri-dockerd.deb"
-
-echo "Downloading $DEB_PACKAGE_NAME..."
-wget -q -O "/root/$DEB_PACKAGE_NAME" "$CRI_DOCKERD_URL"
-if [ $? -ne 0 ]; then
-    echo "FATAL: Failed to download cri-dockerd.deb."
-    exit 1
-fi
-echo "Package is available at /root/$DEB_PACKAGE_NAME"
-
-# 2. Ensure cri-dockerd is not installed or running
-echo "Ensuring cri-dockerd service is stopped and uninstalled..."
-systemctl stop cri-dockerd.service >/dev/null 2>&1
-systemctl disable cri-dockerd.service >/dev/null 2>&1
-apt-get remove -y --purge cri-dockerd >/dev/null 2>&1
-
-# 3. CRITICAL: Ensure Kubelet is configured to use containerd
-# Killercoda uses a systemd drop-in file for kubelet args. We will ensure it points to containerd.
-KUBELET_DROPIN_DIR="/etc/systemd/system/kubelet.service.d"
-KUBELET_CONF_FILE="$KUBELET_DROPIN_DIR/10-kubeadm.conf"
-CONTAINERD_SOCK="unix:///run/containerd/containerd.sock"
-
-echo "Ensuring kubelet is configured for containerd..."
-if [ -f "$KUBELET_CONF_FILE" ]; then
-    # Use sed to find the line with --container-runtime-endpoint and replace it
-    sed -i "s|--container-runtime-endpoint=.*\"|--container-runtime-endpoint=${CONTAINERD_SOCK}\"|g" "$KUBELET_CONF_FILE"
-else
-    echo "FATAL: Kubelet configuration file not found at $KUBELET_CONF_FILE"
-    exit 1
+if [[ "$UBUNTU_CODENAME" != "jammy" && "$UBUNTU_CODENAME" != "focal" ]]; then
+  UBUNTU_CODENAME="focal"
 fi
 
-# 4. Reset sysctl parameters and remove any persistent config
-echo "Resetting kernel parameters and cleaning persistent config..."
-sysctl -w net.bridge.bridge-nf-call-iptables=0
-sysctl -w net.ipv6.conf.all.forwarding=0
-sysctl -w net.ipv4.ip_forward=0
-rm -f /etc/sysctl.d/99-kubernetes-cri.conf
+wget -qO /root/cri-dockerd.deb "https://github.com/Mirantis/cri-dockerd/releases/download/v${CRI_DOCKERD_VERSION}/cri-dockerd_${CRI_DOCKERD_VERSION}.3-0.ubuntu-${UBUNTU_CODENAME}_amd64.deb"
 
-# 5. Reload and restart kubelet to apply the containerd config
-echo "Applying clean configuration..."
-systemctl daemon-reload
-systemctl restart kubelet
+# 2. Ensure service is stopped/removed just in case
+systemctl stop cri-docker 2>/dev/null
+systemctl disable cri-docker 2>/dev/null
+apt-get purge -y cri-dockerd 2>/dev/null
 
-echo "Initialization complete. The node is running with containerd."
+# 3. Aggressively strip the required sysctls from ANY existing config files
+# The Killercoda base image might have these set in standard files (e.g., for Docker)
+sed -i '/net.bridge.bridge-nf-call-iptables/d' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null
+sed -i '/net.ipv6.conf.all.forwarding/d' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null
+sed -i '/net.ipv4.ip_forward/d' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null
+sed -i '/net.netfilter.nf_conntrack_max/d' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null
+
+# Reload sysctl to clear file caches
+sysctl --system >/dev/null 2>&1
+
+# 4. Load required kernel modules
+modprobe overlay
+modprobe br_netfilter
+modprobe nf_conntrack
+
+# 5. Force the active memory values to 0 so the user MUST apply them
+sysctl -w net.bridge.bridge-nf-call-iptables=0 2>/dev/null
+sysctl -w net.ipv6.conf.all.forwarding=0 2>/dev/null
+sysctl -w net.ipv4.ip_forward=0 2>/dev/null
+sysctl -w net.netfilter.nf_conntrack_max=65536 2>/dev/null
+
+echo "Environment preparation complete."
