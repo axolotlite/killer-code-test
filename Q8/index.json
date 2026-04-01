@@ -1,0 +1,25 @@
+{
+    "title": "CNI Installation",
+    "description": "Install a Suitable CNI with network Policy",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "init.sh",
+        "foreground": "ssh.sh"
+      },
+      "steps": [
+        {
+            "text": "step1/text.md",
+            "verify": "step1/verify.sh"
+        }
+      ],
+      "assets": {
+        "host01": [
+            {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"}
+        ]
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-2nodes"
+    }
+}
