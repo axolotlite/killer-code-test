@@ -1,8 +1,5 @@
 **CKA Lab 09: cri-dockerd Installation**
-Start by ssh-ing into the controlplane node:
-```
-ssh controlplane
-```{{copy}}
+You are already on an ubuntu node, preparing CRIO-Dockerd for a future kubernetes install
 
 ### cri-dockerd Installation
 

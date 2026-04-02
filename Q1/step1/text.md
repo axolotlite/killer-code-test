@@ -1,4 +1,4 @@
-**CKA Lab 01: postgres Persistent Volume Recovery**
+**CKA Lab 01: Postgres Persistent Volume Recovery**
 
 ### Tasks to Perform
 

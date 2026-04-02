@@ -2,11 +2,11 @@
 
 ### Tasks
 
-Install a **CNI** of your choice that meets the following criteria:
+Install a **CNI** of your choice that meets the following criteria:  
 
-* **Pod-to-Pod communication** works
-* Supports **NetworkPolicies**
-* Installed via a **manifest**
+* **Pod-to-Pod communication** works  
+* Supports **NetworkPolicies**  
+* Installed via a **manifest**  
 
 **Options:**
 
@@ -23,4 +23,4 @@ Install a **CNI** of your choice that meets the following criteria:
   ```{{copy}}
 
 **Note:**  
-Ensure that the nodes are `Ready`
+Ensure that the nodes are `Ready`  
