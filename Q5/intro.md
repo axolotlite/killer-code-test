@@ -22,6 +22,14 @@ You can use the documentation:
 keyword:  
 * `HPA`  
 
+For full HPA Manifest:  
 page `HorizontalPodAutoscaler Walkthrough - Kubernetes`  
 keywords:  
-* `kind:`  
+* `kind: HorizontalPodAutoscaler`  
+* `scaleDown`
+
+for Scaledown Stabilization:  
+page `Horizontal Pod Autoscaling - Kubernetes`  
+keywords:  
+* `behavior:`
+* `scaledown:`
