@@ -20,3 +20,11 @@ Your responsibility is to restore the deployment while preserving the data by re
 
 You can use the documentation:
 - https://kubernetes.io/
+
+keyword:  
+* `pvc`  
+
+page `Persistent Volumes - Kubernetes`  
+keywords:  
+* `kind: Pod`  
+* `kind: PersistentVolume`  
