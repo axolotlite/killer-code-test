@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:stable
+          ports:
+            - containerPort: 80
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              cat <<EOF > /etc/nginx/nginx.conf
+              events {}
+
+              http {
+                access_log /var/log/nginx/access.log;
+                error_log /var/log/nginx/error.log warn;
+
+                server {
+                  listen 80;
+
+                  location / {
+                    return 200 "ok\n";
+                  }
+                }
+              }
+              EOF
+
+              # Ensure log directory exists
+              mkdir -p /var/log/nginx
+
+              nginx -g 'daemon off;'
