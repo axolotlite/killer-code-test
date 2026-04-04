@@ -1,0 +1,29 @@
+{
+    "title": "Horizontal Pod Autoscaler",
+    "description": "Autoscaling an existing deployment",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "init.sh",
+        "foreground": "ssh.sh"
+      },
+      "steps": [
+        {
+            "text": "step1/text.md",
+            "verify": "step1/verify.sh"
+        }
+      ],
+      "assets": {
+        "host01": [
+            {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
+            {"file": "namespace.yaml", "target": "/tmp/init/namespace.yaml"},
+            {"file": "deployment.yaml", "target": "/tmp/init/deployment.yaml"},
+            {"file": "svc.yaml", "target": "/tmp/init/svc.yaml"},
+            {"file": "metrics-server.yaml", "target": "/tmp/init/metrics-server.yaml"}
+        ]
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-2nodes"
+    }
+}
