@@ -1,6 +1,6 @@
 {
-    "title": "Troubleshoot Static Manifests",
-    "description": "Troubleshooting a failing kubernetes cluster",
+    "title": "Logging Sidecar",
+    "description": "Add a logging sidecar to the nginx deployment",
     "details": {
       "intro": {
         "text": "intro.md",
