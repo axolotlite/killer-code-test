@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: nginx
   namespace: nginx
+  labels:
+    app: nginx
 spec:
   replicas: 1
   selector:
@@ -14,31 +16,8 @@ spec:
         app: nginx
     spec:
       containers:
-        - name: nginx
-          image: nginx:stable
-          ports:
-            - containerPort: 80
-          command: ["/bin/sh", "-c"]
-          args:
-            - |
-              cat <<EOF > /etc/nginx/nginx.conf
-              events {}
-
-              http {
-                access_log /var/log/nginx/access.log;
-                error_log /var/log/nginx/error.log warn;
-
-                server {
-                  listen 80;
-
-                  location / {
-                    return 200 "ok\n";
-                  }
-                }
-              }
-              EOF
-
-              # Ensure log directory exists
-              mkdir -p /var/log/nginx
-
-              nginx -g 'daemon off;'
+      - name: nginx
+        image: nginx:latest
+        command: ["/bin/sh", "-c", "mkdir -p /var/log/nginx && nginx -g 'daemon off;'"]
+        ports:
+        - containerPort: 80
