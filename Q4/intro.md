@@ -20,7 +20,9 @@ You can use the documentation:
 - https://kubernetes.io/
 
 keyword:  
-* `quickstart`  
-page keywords:  
-* `step 2`  
-* `install calico`  
+* `limits`  
+
+page `Resource Management for Pods and Containers - Kubernetes`  
+keywords:  
+* `kind: Pod`  
+* `resources:`  
