@@ -2,7 +2,7 @@
 
 ### Tasks
 
-Update the existing **nginx deployment** in namespace `nginx` by adding a **sidecar container**.
+Update the existing **nginx deployment** in namespace `nginx` by adding a **sidecar container** to the deployment's **containers**.
 
 **Sidecar container specifications:**  
 * **Name:** `sidecar`  

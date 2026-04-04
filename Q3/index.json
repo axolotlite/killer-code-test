@@ -1,6 +1,6 @@
 {
     "title": "Logging Sidecar",
-    "description": "Add a logging sidecar to the nginx deployment",
+    "description": "Add a logging sidecar to the nginx deployment's containers",
     "details": {
       "intro": {
         "text": "intro.md",
