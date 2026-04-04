@@ -21,3 +21,32 @@ spec:
         command: ["/bin/sh", "-c", "mkdir -p /var/log/nginx && nginx -g 'daemon off;'"]
         ports:
         - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-curl
+  namespace: nginx
+  labels:
+    app: nginx-curl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-curl
+  template:
+    metadata:
+      labels:
+        app: nginx-curl
+    spec:
+      containers:
+      - name: curl
+        image: curlimages/curl:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          while true; do
+            curl -s http://nginx.nginx.svc.cluster.local >/dev/null
+            sleep 5
+          done
