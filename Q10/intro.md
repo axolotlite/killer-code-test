@@ -20,9 +20,9 @@ You can use the documentation:
 - https://kubernetes.io/
 
 keyword:  
-* `limits`  
+* `taint`  
 
-page `Resource Management for Pods and Containers - Kubernetes`  
+page `Taints and Tolerations | Kubernetes`  
 keywords:  
+* `kubectl taint nodes`  
 * `kind: Pod`  
-* `resources:`  
