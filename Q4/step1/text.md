@@ -1,0 +1,13 @@
+**CKA Lab 04: Resource Allocation**
+
+### Tasks
+
+1. **Scale down** the WordPress deployment to 0 replicas
+
+2. **Edit the deployment** to allocate node resources evenly among the 3 pods:
+
+* Assign equal **CPU and memory** to each pod.
+* Leave a **safety margin** to avoid node instability.
+* Ensure **init containers** and main containers have the **same requests and limits**.
+
+3. **Scale up** the deployment back to 3 replicas
