@@ -1,6 +1,6 @@
 {
-    "title": "Pod Resources & Limits",
-    "description": "Set a deployments Resources and Limits",
+    "title": "Migrating to Gateway API",
+    "description": "Migrate an Ingress Resource to Gateway API",
     "details": {
       "intro": {
         "text": "intro.md",
