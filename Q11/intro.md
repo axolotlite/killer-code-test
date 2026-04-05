@@ -10,3 +10,23 @@ You have a web application with an existing **Ingress**. You need to **migrate**
 * Create a **Gateway** resource
 * Create an **HTTPRoute**
 * Understand the relationship between **Gateway**, **HTTPRoute**, and **Service**
+
+You can use the gateway api documentation:  
+- https://gateway-api.sigs.k8s.io/
+
+keyword:  
+* `tls conf`  
+
+page `TLS Configuration`  
+keywords:  
+* `kind: Gateway`  
+
+You can use the documentation:  
+- https://kubernetes.io/
+
+keyword:  
+* `gateway`  
+
+page `Gateway API - Kubernetes`  
+keywords:  
+* `kind: httproute`  

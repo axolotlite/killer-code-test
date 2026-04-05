@@ -12,6 +12,8 @@ else
 fi
 
 # 2. Define expected state
+NAMESPACE="web-app"
+
 GATEWAY_NAME="web-gateway"
 ROUTE_NAME="web-route"
 EXPECTED_HOSTNAME="gateway.web.k8s.local"
@@ -29,29 +31,29 @@ EXPECTED_PATH_TYPE="PathPrefix"
 # EXECUTION BLOCK
 # ==========================================
 
-log "INFO" "Running Gateway API Migration Validations..."
+log "INFO" "Running Gateway API Migration Validations in namespace: $NAMESPACE..."
 echo "" | tee -a "$OUTPUT_FILE"
 
 # --- GATEWAY CHECKS ---
 log "INFO" "Checking Gateway Configuration..."
 
 # 1. Gateway Existence
-check_k8s_resource gateway "$GATEWAY_NAME" "" "" "" ""
+check_k8s_resource gateway "$GATEWAY_NAME" "$NAMESPACE" "" "" ""
 
 # 2. GatewayClass
-check_k8s_resource gateway "$GATEWAY_NAME" "" "" '{.spec.gatewayClassName}' "$EXPECTED_GW_CLASS"
+check_k8s_resource gateway "$GATEWAY_NAME" "$NAMESPACE" "" '{.spec.gatewayClassName}' "$EXPECTED_GW_CLASS"
 
 # 3. Listener Hostname
-check_k8s_resource gateway "$GATEWAY_NAME" "" "" '{.spec.listeners[0].hostname}' "$EXPECTED_HOSTNAME"
+check_k8s_resource gateway "$GATEWAY_NAME" "$NAMESPACE" "" '{.spec.listeners[0].hostname}' "$EXPECTED_HOSTNAME"
 
 # 4. Listener Protocol
-check_k8s_resource gateway "$GATEWAY_NAME" "" "" '{.spec.listeners[0].protocol}' "$EXPECTED_PROTOCOL"
+check_k8s_resource gateway "$GATEWAY_NAME" "$NAMESPACE" "" '{.spec.listeners[0].protocol}' "$EXPECTED_PROTOCOL"
 
 # 5. Listener Port
-check_k8s_resource gateway "$GATEWAY_NAME" "" "" '{.spec.listeners[0].port}' "$EXPECTED_PORT"
+check_k8s_resource gateway "$GATEWAY_NAME" "$NAMESPACE" "" '{.spec.listeners[0].port}' "$EXPECTED_PORT"
 
 # 6. TLS Secret Reference
-check_k8s_resource gateway "$GATEWAY_NAME" "" "" '{.spec.listeners[0].tls.certificateRefs[0].name}' "$EXPECTED_SECRET"
+check_k8s_resource gateway "$GATEWAY_NAME" "$NAMESPACE" "" '{.spec.listeners[0].tls.certificateRefs[0].name}' "$EXPECTED_SECRET"
 
 
 echo "" | tee -a "$OUTPUT_FILE"
@@ -59,25 +61,25 @@ echo "" | tee -a "$OUTPUT_FILE"
 log "INFO" "Checking HTTPRoute Configuration..."
 
 # 7. HTTPRoute Existence
-check_k8s_resource httproute "$ROUTE_NAME" "" "" "" ""
+check_k8s_resource httproute "$ROUTE_NAME" "$NAMESPACE" "" "" ""
 
 # 8. Parent Gateway Reference
-check_k8s_resource httproute "$ROUTE_NAME" "" "" '{.spec.parentRefs[0].name}' "$GATEWAY_NAME"
+check_k8s_resource httproute "$ROUTE_NAME" "$NAMESPACE" "" '{.spec.parentRefs[0].name}' "$GATEWAY_NAME"
 
 # 9. Route Hostname
-check_k8s_resource httproute "$ROUTE_NAME" "" "" '{.spec.hostnames[0]}' "$EXPECTED_HOSTNAME"
+check_k8s_resource httproute "$ROUTE_NAME" "$NAMESPACE" "" '{.spec.hostnames[0]}' "$EXPECTED_HOSTNAME"
 
 # 10. Path Match Value
-check_k8s_resource httproute "$ROUTE_NAME" "" "" '{.spec.rules[0].matches[0].path.value}' "$EXPECTED_PATH"
+check_k8s_resource httproute "$ROUTE_NAME" "$NAMESPACE" "" '{.spec.rules[0].matches[0].path.value}' "$EXPECTED_PATH"
 
 # 11. Path Match Type
-check_k8s_resource httproute "$ROUTE_NAME" "" "" '{.spec.rules[0].matches[0].path.type}' "$EXPECTED_PATH_TYPE"
+check_k8s_resource httproute "$ROUTE_NAME" "$NAMESPACE" "" '{.spec.rules[0].matches[0].path.type}' "$EXPECTED_PATH_TYPE"
 
 # 12. Backend Service Reference
-check_k8s_resource httproute "$ROUTE_NAME" "" "" '{.spec.rules[0].backendRefs[0].name}' "$EXPECTED_SERVICE"
+check_k8s_resource httproute "$ROUTE_NAME" "$NAMESPACE" "" '{.spec.rules[0].backendRefs[0].name}' "$EXPECTED_SERVICE"
 
 # 13. Backend Service Port
-check_k8s_resource httproute "$ROUTE_NAME" "" "" '{.spec.rules[0].backendRefs[0].port}' "$EXPECTED_SVC_PORT"
+check_k8s_resource httproute "$ROUTE_NAME" "$NAMESPACE" "" '{.spec.rules[0].backendRefs[0].port}' "$EXPECTED_SVC_PORT"
 
 # ==========================================
 # RESULTS SUMMARY

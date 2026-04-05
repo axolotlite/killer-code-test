@@ -2,7 +2,7 @@
 
 ### Tasks
 
-1. **Create a Gateway** named `web-gateway`:
+1. **Create a Gateway** named `web-gateway` in the `web-app` namespace:
 
 * **Hostname:** `gateway.web.k8s.local`
 * Maintain the existing **Ingress TLS configuration** for `web`
@@ -12,3 +12,5 @@
 
 * **Hostname:** `gateway.web.k8s.local`
 * Preserve the **routing rules** from the existing Ingress for `web`
+
+3. **Delete the ingress** after you're done.
