@@ -1,0 +1,36 @@
+{
+    "title": "Pod Resources & Limits",
+    "description": "Set a deployments Resources and Limits",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "init.sh",
+        "foreground": "ssh.sh"
+      },
+      "steps": [
+        {
+            "text": "step1/text.md",
+            "verify": "step1/verify.sh"
+        }
+      ],
+      "assets": {
+        "host01": [
+            {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
+            {"file": "deployment.yaml", "target": "/tmp/init/deployment.yaml"},
+            {"file": "gateway-api-crds.yaml", "target": "/tmp/init/gateway-api-crds.yaml"},
+            {"file": "gatewayclass.yaml", "target": "/tmp/init/gatewayclass.yaml"},
+            {"file": "ingress.yaml", "target": "/tmp/init/ingress.yaml"},
+            {"file": "namespace.yaml", "target": "/tmp/init/namespace.yaml"},
+            {"file": "svc.yaml", "target": "/tmp/init/svc.yaml"}
+        ]
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-2nodes"
+    }
+}
+
+
+
+
+
