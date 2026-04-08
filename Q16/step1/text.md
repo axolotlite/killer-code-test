@@ -1,8 +1,8 @@
 **CKA Lab 16: NodePort Service**
 
 ### Tasks
-
-1. **Configure the deployment** to expose port 80:
+The following should be done in the `relative` namespace  
+1. **Configure the deployment** `nodeport-deployment` to expose containerPort `80`:
 * **Name:** `http`
 * **Port:** `80`
 * **Protocol:** `TCP`
