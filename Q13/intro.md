@@ -15,14 +15,3 @@ Two deployments exist: **Frontend** (`namespace: frontend`) and **Backend** (`na
 * Analyze **NetworkPolicies**
 * Understand **namespaceSelector** and **podSelector**
 * Apply the **principle of least privilege** when allowing traffic
-
-You can use the documentation:  
-- https://kubernetes.io/
-
-keyword:  
-* `TBD`  
-
-page `TBD`  
-keywords:  
-* `kind:`  
-* `TBD`  
