@@ -20,9 +20,9 @@ You can use the documentation:
 - https://kubernetes.io/
 
 keyword:  
-* `TBD`  
+* `ingress`  
 
-page `Resource Management for Pods and Containers - Kubernetes`  
+page `Ingress - Kubernetes`  
 keywords:  
-* `kind:`  
-* `TBD`  
+* `kind: Ingress`  
+* `host:`

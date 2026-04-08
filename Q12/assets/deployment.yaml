@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: echo
-        image: gcr.io/google_containers/echoserver:latest
+        image: gcr.io/google_containers/echoserver:1.10
         ports:
         - containerPort: 8080
