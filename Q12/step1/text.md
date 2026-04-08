@@ -14,8 +14,9 @@
 3. **Test accessibility**:
 
 ```bash
-curl http://{{ exec "kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'" }}:
-```
+curl http://127.0.0.1:31284/echo
+```{{copy}}
+
 ```bash
 curl http://echo-service.org/echo
-```
+```{{copy}}
