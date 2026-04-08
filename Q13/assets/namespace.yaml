@@ -11,5 +11,7 @@ kind: Namespace
 metadata:
   creationTimestamp: null
   name: frontend
+  labels:
+    kubernetes.io/metadata.name: frontend
 spec: {}
 status: {}
