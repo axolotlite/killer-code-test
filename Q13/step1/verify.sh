@@ -20,36 +20,36 @@ echo "" | tee -a "$OUTPUT_FILE"
 
 # --- Task 1 & 2 & 3: Validate Correct Policy Application ---
 
-# policy-x is wildly permissive (podSelector: {}, ingress: [{}])
-if kubectl get networkpolicy policy-x -n backend &>/dev/null; then
-    log "FAIL" "NetworkPolicy 'policy-x' was applied. This is an 'allow-all' policy and is NOT the least permissive."
+# policy-1 is wildly permissive (podSelector: {}, ingress: [{}])
+if kubectl get networkpolicy policy-1 -n backend &>/dev/null; then
+    log "FAIL" "NetworkPolicy 'policy-1' was applied. This is an 'allow-all' policy and is NOT the least permissive."
     ((FAIL_COUNT++))
 else
-    log "PASS" "NetworkPolicy 'policy-x' was correctly rejected/ignored."
+    log "PASS" "NetworkPolicy 'policy-1' was correctly rejected/ignored."
     ((PASS_COUNT++))
 fi
 
-# policy-y is less permissive but still allows an entire /16 subnet.
-if kubectl get networkpolicy policy-y -n backend &>/dev/null; then
-    log "FAIL" "NetworkPolicy 'policy-y' was applied. It allows a full 172.16.0.0/16 subnet, which is not the least permissive."
+# policy-2 is less permissive but still allows an entire /16 subnet.
+if kubectl get networkpolicy policy-2 -n backend &>/dev/null; then
+    log "FAIL" "NetworkPolicy 'policy-2' was applied. It allows a full 172.16.0.0/16 subnet, which is not the least permissive."
     ((FAIL_COUNT++))
 else
-    log "PASS" "NetworkPolicy 'policy-y' was correctly rejected/ignored."
+    log "PASS" "NetworkPolicy 'policy-2' was correctly rejected/ignored."
     ((PASS_COUNT++))
 fi
 
-# policy-z is the least permissive (restricts exclusively to frontend namespace / frontend pods).
-if ! kubectl get networkpolicy policy-z -n backend &>/dev/null; then
-    log "FAIL" "NetworkPolicy 'policy-z' is NOT applied. This was the correct, least permissive policy."
+# policy-3 is the least permissive (restricts exclusively to frontend namespace / frontend pods).
+if ! kubectl get networkpolicy policy-3 -n backend &>/dev/null; then
+    log "FAIL" "NetworkPolicy 'policy-3' is NOT applied. This was the correct, least permissive policy."
     ((FAIL_COUNT++))
     print_summary_and_exit
 else
-    log "PASS" "NetworkPolicy 'policy-z' was successfully applied to the 'backend' namespace."
+    log "PASS" "NetworkPolicy 'policy-3' was successfully applied to the 'backend' namespace."
     ((PASS_COUNT++))
 fi
 
 # Verify the port rule on the applied policy explicitly checks for port 80
-check_k8s_resource networkpolicy "policy-z" "backend" "" "{.spec.ingress[0].ports[0].port}" "80"
+check_k8s_resource networkpolicy "policy-3" "backend" "" "{.spec.ingress[0].ports[0].port}" "80"
 
 # Give the CNI a moment to enforce the rules before testing traffic
 sleep 2
