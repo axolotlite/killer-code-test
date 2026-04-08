@@ -1,0 +1,27 @@
+{
+    "title": "Exposing a Service Ingress/NodePOrt",
+    "description": "Expose a Deployment using NodePort and Ingress Resources",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "init.sh",
+        "foreground": "ssh.sh"
+      },
+      "steps": [
+        {
+            "text": "step1/text.md",
+            "verify": "step1/verify.sh"
+        }
+      ],
+      "assets": {
+        "host01": [
+            {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
+            {"file": "namespace.yaml", "target": "/tmp/init/namespace.yaml"},
+            {"file": "deployment.yaml", "target": "/tmp/init/deployment.yaml"}
+        ]
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-2nodes"
+    }
+}
