@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: policy-2
+  namespace: backend
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: frontend
+    - ipBlock:
+        cidr: 172.16.0.0/16
+    ports:
+    - protocol: TCP
+      port: 80
+  policyTypes:
+  - Ingress
