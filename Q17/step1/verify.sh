@@ -14,7 +14,7 @@ fi
 # 2. Define target parameters
 NAMESPACE="nginx-static"
 CM_NAME="nginx-config"
-SVC_NAME="nginx-service"
+SVC_NAME="nginx-static"
 HOST_ENTRY="ckaquestion.k8s.local"
 TIMEOUT="15s"
 
