@@ -1,0 +1,30 @@
+{
+    "title": "Update Nginx to use TLSV1.3",
+    "description": "Update an existing deployment to use a more secure version of TLS",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "init.sh",
+        "foreground": "ssh.sh"
+      },
+      "steps": [
+        {
+            "text": "step1/text.md",
+            "verify": "step1/verify.sh"
+        }
+      ],
+      "assets": {
+        "host01": [
+            {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
+            {"file": "namespace.yaml", "target": "/tmp/init/"},
+            {"file": "secret.yaml", "target": "/tmp/init/"},
+            {"file": "cm.yaml", "target": "/tmp/init/"},
+            {"file": "svc.yaml", "target": "/tmp/init/"},
+            {"file": "deployment.yaml", "target": "/tmp/init/"}
+        ]
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-2nodes"
+    }
+}
