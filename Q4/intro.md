@@ -23,6 +23,6 @@ keyword:
 * `limits`  
 
 page `Resource Management for Pods and Containers - Kubernetes`  
-keywords:  
+page keywords:  
 * `kind: Pod`  
 * `resources:`  
