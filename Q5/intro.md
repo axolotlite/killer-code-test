@@ -24,12 +24,12 @@ keyword:
 
 For full HPA Manifest:  
 page `HorizontalPodAutoscaler Walkthrough - Kubernetes`  
-keywords:  
+page keywords:  
 * `kind: HorizontalPodAutoscaler`  
 * `scaleDown`
 
 for Scaledown Stabilization:  
 page `Horizontal Pod Autoscaling - Kubernetes`  
-keywords:  
+page keywords:  
 * `behavior:`
 * `scaledown:`
