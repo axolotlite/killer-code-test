@@ -1,19 +1,10 @@
 #!/bin/bash
-# postgres-validate.sh - Postgres Deployment and Storage Validation
+# verify.sh - Postgres Deployment and Storage Validation
 OUTPUT_FILE="${OUTPUT_FILE:-$HOME/validation.log}"
 
-# 1. Source the utility library
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-if [ -f "$SCRIPT_DIR/utility.sh" ]; then
-  source "$SCRIPT_DIR/utility.sh"
-else
-  echo "[FATAL] utility.sh not found in $SCRIPT_DIR" | tee -a "$OUTPUT_FILE"
-  pwd | tee -a "$OUTPUT_FILE"
-  ls | tee -a "$OUTPUT_FILE"
-  exit 1
-fi
+source "$SCRIPT_DIR/utility.sh"
 
-# 2. Define expected state
 NS="postgres"
 DEPLOYMENT="postgres"
 PVC="postgres-pvc"
@@ -22,38 +13,17 @@ PV_SIZE="250Mi"
 PV_ACCESS="ReadWriteOnce"
 MOUNT_PATH="/var/lib/postgresql/data"
 
-# ==========================================
-# EXECUTION BLOCK
-# ==========================================
-
-log "INFO" "Running Postgres Deployment and Storage Validations..."
+log "INFO" "Running Postgres Validations..."
 echo "" | tee -a "$OUTPUT_FILE"
 
-# 1. Namespace existence
 check_k8s_resource namespace "$NS"
-
-# 3. PV access mode (cluster-scoped, no namespace)
 check_k8s_resource pv "$PV_NAME" "" "" '{.spec.accessModes[0]}' "$PV_ACCESS"
-
-# 4. PV size
 check_k8s_resource pv "$PV_NAME" "" "" '{.spec.capacity.storage}' "$PV_SIZE"
-
-# 5. PVC size
 check_k8s_resource pvc "$PVC" "$NS" "" '{.spec.resources.requests.storage}' "$PV_SIZE"
-
-# 6. PVC bound PV
 check_k8s_resource pvc "$PVC" "$NS" "" '{.spec.volumeName}' "$PV_NAME"
 
-# 7. check if the deployment exists
 check_k8s_resource deployment "$DEPLOYMENT" "$NS"
-
-# 8. check if the pv is added to volumes
 check_k8s_resource deployment "$DEPLOYMENT" "$NS" "" "{.spec.template.spec.volumes[0].persistentVolumeClaim.claimName}" $PVC
-# 9. Check if the pvc is mounted correctly
 check_k8s_resource deployment "$DEPLOYMENT" "$NS" "" "{.spec.template.spec.containers[0].volumeMounts[0].mountPath}" $MOUNT_PATH
-
-# ==========================================
-# RESULTS SUMMARY
-# ==========================================
 
 print_summary_and_exit

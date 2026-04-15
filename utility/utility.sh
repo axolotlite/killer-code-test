@@ -188,6 +188,181 @@ check_k8s_resource() {
 
   return 0
 }
+# --- New Utilities ---
+check_k8s_resource_absent() {
+  local kind="$1"
+  local name="$2"
+  local namespace="$3"
+  
+  local cmd=("kubectl" "get" "$kind" "$name" "--ignore-not-found")
+  [ -n "$namespace" ] && cmd+=("-n" "$namespace")
+
+  if [ -z "$("${cmd[@]}" 2>/dev/null)" ]; then
+    log "PASS" "$kind/$name is correctly absent/rejected."
+    ((PASS_COUNT++))
+    return 0
+  else
+    log "FAIL" "$kind/$name exists but should not."
+    ((FAIL_COUNT++))
+    return 1
+  fi
+}
+
+check_k8s_resource_contains() {
+  local kind="$1"
+  local name="$2"
+  local namespace="$3"
+  local jsonpath="$4"
+  local expected_substring="$5"
+
+  local cmd=("kubectl" "get" "$kind" "$name" "-o" "jsonpath=$jsonpath")
+  [ -n "$namespace" ] && cmd+=("-n" "$namespace")
+
+  local output=$("${cmd[@]}" 2>/dev/null)
+  
+  if [[ "$output" == *"$expected_substring"* ]]; then
+    log "PASS" "$kind/$name [$jsonpath] contains '$expected_substring'"
+    ((PASS_COUNT++))
+    return 0
+  else
+    log "FAIL" "$kind/$name [$jsonpath] does NOT contain '$expected_substring'. Found: '$output'"
+    ((FAIL_COUNT++))
+    return 1
+  fi
+}
+
+check_http_status() {
+  local url="$1"
+  local expected_code="$2"
+  local max_retries="${3:-5}"
+  local sleep_time="${4:-2}"
+  local extra_curl_args="${5:-}"
+
+  log "INFO" "Testing reachability of $url (Expected HTTP $expected_code)..."
+  
+  local http_code="000"
+  for ((i=1; i<=max_retries; i++)); do
+    http_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 3 $extra_curl_args "$url" || echo "000")
+    if [ "$http_code" == "$expected_code" ]; then
+      log "PASS" "Successfully received HTTP $expected_code from $url"
+      ((PASS_COUNT++))
+      return 0
+    fi
+    sleep "$sleep_time"
+  done
+
+  log "FAIL" "Failed to reach $url. Expected HTTP $expected_code, got $http_code."
+  ((FAIL_COUNT++))
+  return 1
+}
+
+check_pod_curl() {
+  local from_pod="$1"
+  local from_ns="$2"
+  local target_url="$3"
+  local expected_code="$4"
+  local timeout="${5:-3}"
+
+  local http_code=$(kubectl exec -n "$from_ns" "$from_pod" -- curl -s -o /dev/null -w "%{http_code}" --max-time "$timeout" "$target_url" 2>/dev/null || echo "000")
+
+  if [ "$http_code" == "$expected_code" ]; then
+    log "PASS" "Pod $from_pod successfully received HTTP $expected_code from $target_url"
+    ((PASS_COUNT++))
+    return 0
+  else
+    log "FAIL" "Pod $from_pod expected HTTP $expected_code from $target_url, got $http_code"
+    ((FAIL_COUNT++))
+    return 1
+  fi
+}
+
+check_local_file() {
+  local filepath="$1"
+  local expected_content="$2" # Optional
+
+  if [ ! -f "$filepath" ]; then
+    log "FAIL" "File $filepath does not exist."
+    ((FAIL_COUNT++))
+    return 1
+  fi
+
+  if [ -z "$expected_content" ]; then
+    log "PASS" "File $filepath exists."
+    ((PASS_COUNT++))
+    return 0
+  fi
+
+  if grep -qE "$expected_content" "$filepath"; then
+    log "PASS" "File $filepath contains expected content ('$expected_content')."
+    ((PASS_COUNT++))
+    return 0
+  else
+    log "FAIL" "File $filepath exists but is missing expected content ('$expected_content')."
+    ((FAIL_COUNT++))
+    return 1
+  fi
+}
+
+wait_and_check_rollout() {
+  local kind="$1"
+  local name="$2"
+  local namespace="$3"
+  local timeout="${4:-15s}"
+
+  log "INFO" "Waiting up to $timeout for $kind/$name rollout..."
+  if kubectl rollout status "$kind" "$name" -n "$namespace" --timeout="$timeout" >/dev/null 2>&1; then
+    log "PASS" "$kind/$name has successfully rolled out and is Ready."
+    ((PASS_COUNT++))
+    return 0
+  else
+    log "FAIL" "$kind/$name failed to rollout or timed out."
+    ((FAIL_COUNT++))
+    # Automatically print the reason for the failure (Pending pods, CrashLoop, etc.)
+    kubectl get pods -n "$namespace" -l "app=$name" --field-selector status.phase!=Running | tee -a "$OUTPUT_FILE"
+    return 1
+  fi
+}
+# Checks if a systemd service is active and enabled
+# Solves: Q9 (cri-dockerd systemd check)
+check_systemd_service() {
+  local svc_name="$1"
+  
+  if systemctl is-enabled --quiet "$svc_name" 2>/dev/null && systemctl is-active --quiet "$svc_name" 2>/dev/null; then
+    log "PASS" "Service $svc_name is active and enabled."
+    ((PASS_COUNT++))
+  else
+    log "FAIL" "Service $svc_name is either NOT active or NOT enabled."
+    ((FAIL_COUNT++))
+  fi
+}
+
+# Checks if a debian package is installed
+# Solves: Q9 (cri-dockerd apt check)
+check_deb_package() {
+  local pkg_name="$1"
+  
+  if dpkg-query -W -f='${Status}' "$pkg_name" 2>/dev/null | grep -q "install ok installed"; then
+    log "PASS" "Debian package $pkg_name is installed."
+    ((PASS_COUNT++))
+  else
+    log "FAIL" "Debian package $pkg_name is NOT installed."
+    ((FAIL_COUNT++))
+  fi
+}
+
+check_sysctl_active() {
+  local param="$1"
+  local expected="$2"
+  
+  local actual=$(sysctl -n "$param" 2>/dev/null)
+  if [ "$actual" == "$expected" ]; then
+    log "PASS" "sysctl $param is actively applied ($actual)"
+    ((PASS_COUNT++))
+  else
+    log "FAIL" "sysctl $param is NOT actively applied (expected: $expected, actual: $actual)"
+    ((FAIL_COUNT++))
+  fi
+}
 
 # --- Summary Output ---
 print_summary_and_exit() {
