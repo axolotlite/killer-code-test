@@ -25,6 +25,6 @@ keyword:
 * `pvc`  
 
 page `Persistent Volumes - Kubernetes`  
-keywords:  
+page keywords:  
 * `kind: Pod`  
 * `kind: PersistentVolume`  
