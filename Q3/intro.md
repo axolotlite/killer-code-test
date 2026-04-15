@@ -25,6 +25,7 @@ You can use the documentation:
 keyword:  
 * `sidecar`  
 
-**Sidecar Containers | Kubernetes** page keywords:  
+**Sidecar Containers | Kubernetes**  
+page keywords:  
 * `kind:`
 * `initContainers:`

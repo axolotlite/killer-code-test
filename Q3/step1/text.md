@@ -2,7 +2,9 @@
 
 ### Tasks
 
-Update the existing **nginx deployment** in namespace `nginx` by adding a **sidecar container** to the deployment's **containers**.
+Update the existing **nginx deployment** in namespace `nginx` by adding a colocated **sidecar container** to the deployment's **containers**.
+
+You can find the **nginx deployment** manifest at `~/deployment`
 
 **Sidecar container specifications:**  
 * **Name:** `sidecar`  
