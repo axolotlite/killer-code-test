@@ -3,7 +3,8 @@
     "description": "Create an Argocd manifest using helm templates",
     "details": {
       "intro": {
-        "text": "intro.md"
+        "text": "intro.md",
+        "foreground": "ssh.sh"
       },
       "steps": [
         {
