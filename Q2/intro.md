@@ -13,5 +13,5 @@ You need to create an Argo CD `template` manifest in aspecific directory using H
 **Objectives**
 
 * Add the Helm repository
-* Configure Helm chart options using `helm show values \<repo\>/\<chart\>`
-* Use `helm template` to generate manifests using the modified crd
+* Configure Helm chart options using `helm show values <repo>/<chart>`
+* Use `helm template` to generate manifests using the modified values

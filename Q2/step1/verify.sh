@@ -20,14 +20,15 @@ fi
 # Task 2: Namespace
 check_k8s_resource ns "argocd" "" "" "" ""
 
-# Task 3: Manifest Checks (using new check_local_file utility)
+# Task 3: Manifest Checks
 MANIFEST_FILE="/root/argo-helm.yaml"
 
 # Ensure the file exists
 check_local_file "$MANIFEST_FILE" ""
 
-# 3a: Chart Version
-check_local_file "$MANIFEST_FILE" "argo-cd-9.1.10\|chart:.*9.1.10"
+# 3a: Chart Version (Removed the backslash before the pipe for grep -E compatibility)
+check_local_file "$MANIFEST_FILE" "argo-cd-9.1.10|chart:.*9.1.10"
+
 # 3b: Namespace scoping
 check_local_file "$MANIFEST_FILE" "namespace: argocd"
 
