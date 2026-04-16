@@ -15,9 +15,9 @@
       "assets": {
         "host01": [
             {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
-            {"file": "namespace.yaml", "target": "/tmp/init/namespace.yaml"},
-            {"file": "cert-manager.yaml", "target": "/tmp/init/cert-manager.yaml"},
-            {"file": "cert-manager.crds.yaml", "target": "/tmp/init/cert-manager.crds.yaml"}
+            {"file": "namespace.yaml", "target": "/tmp/init/"},
+            {"file": "cert-manager.yaml", "target": "/tmp/init/"},
+            {"file": "cert-manager.crds.yaml", "target": "/tmp/init/"}
         ]
       }
     },

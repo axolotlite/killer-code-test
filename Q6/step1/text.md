@@ -4,4 +4,6 @@
 
 1. **List all cert-manager CRDs** and save them to `/root/resources.yaml`  
 
-2. **Extract documentation** for the `subject` & `uris` field in the `Certificate` CRD and save it to `/root/subject.yaml` and `/root/uris.yaml` respectively  
+2. **Extract documentation** from the `Certificate` CRD:  
+    * `subject` field and save it to `/root/subject.yaml`
+    * `uris` field and save it to `/root/uris.yaml`
