@@ -14,4 +14,4 @@ Create a **HorizontalPodAutoscaler** named `apache-server` in the `autoscale` na
 
 * **Downscale stabilization:** 30 seconds
 
-**Hint:** Check the `~/verification.log` file after each check to see what is wrong with your answer.
+**Hint:** Check the `~/validation.log` file after each check to see what is wrong with your answer.

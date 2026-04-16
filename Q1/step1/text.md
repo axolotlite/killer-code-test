@@ -18,4 +18,4 @@ Apply the updated **Deployment file** to the cluster.
 
 Verify that the **postgres Deployment** is running and stable.
 
-Hint: Check the `~/verification.log` file after each check to see what's wrong with your answer.
+Hint: Check the `~/validation.log` file after each check to see what's wrong with your answer.

@@ -12,4 +12,4 @@
 3. **Scale up** the deployment back to 3 replicas
 
 You can find the WordPress Deployment manifest at `~/deployment.yaml`
-**Hint:** Check the `~/verification.log` file after each check to see what is wrong with your answer.
+**Hint:** Check the `~/validation.log` file after each check to see what is wrong with your answer.
