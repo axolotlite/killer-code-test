@@ -3,7 +3,8 @@
 ### NodePort Service
 
 **Context**
-A deployment `nodeport-deployment` exists in the `relative` namespace. You need to configure it to be exposed via **NodePort**.
+A deployment `nodeport-deployment` exists in the `relative` namespace.  
+You need to configure it to be exposed via **NodePort**.
 
 **Objectives**
 
@@ -18,6 +19,6 @@ keyword:
 * `services`  
 
 page `Service | Kubernetes`  
-keywords:  
+page keywords:  
 * `kind: Pod`  
 * `containerPort:`  
