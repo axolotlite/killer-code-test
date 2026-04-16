@@ -24,4 +24,3 @@ keyword:
 page `Storage Classes | Kubernetes`  
 page keywords:  
 * `kind: storage`  
-* `kind: PersistentVolume`  
