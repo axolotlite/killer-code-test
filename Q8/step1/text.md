@@ -16,7 +16,7 @@ Install a **CNI** of your choice that meets the following criteria:
   https://github.com/flannel-io/flannel/releases/download/v0.27.4/kube-flannel.yml
   ```{{copy}}
 
-* **Calico (v3.30.6) – Recommended for NetworkPolicy**:
+* **Calico (v3.30.6)**:
 
   ```text
   https://raw.githubusercontent.com/projectcalico/calico/refs/tags/v3.30.6/manifests/tigera-operator.yaml
@@ -24,3 +24,5 @@ Install a **CNI** of your choice that meets the following criteria:
 
 **Note:**  
 Ensure that the nodes are `Ready`  
+
+**Hint:** Check the `~/validation.log` file after each check to see what is wrong with your answer.
