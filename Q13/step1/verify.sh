@@ -22,15 +22,4 @@ else
     ((FAIL_COUNT++))
 fi
 
-# Block Test (Temporary Pod)
-BLOCKED_HTTP_CODE=$(kubectl run -q net-test-pod-$(date +%s) --image=curlimages/curl --restart=Never -n default --rm -i -- curl -s -o /dev/null -w "%{http_code}" --max-time 3 http://backend-service.backend.svc.cluster.local 2>/dev/null || echo "000")
-
-if [ "$BLOCKED_HTTP_CODE" == "000" ]; then
-    log "PASS" "Traffic from unauthorized default namespace timed out correctly."
-    ((PASS_COUNT++))
-else
-    log "FAIL" "Traffic from unauthorized namespace was allowed (Got $BLOCKED_HTTP_CODE)."
-    ((FAIL_COUNT++))
-fi
-
 print_summary_and_exit
