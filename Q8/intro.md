@@ -20,6 +20,7 @@ You can use the documentation:
 
 keyword:  
 * `quickstart`  
+Page `Calico quickstart guide`  
 page keywords:  
 * `step 2`  
 * `install calico`  
