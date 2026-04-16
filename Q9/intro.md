@@ -9,6 +9,7 @@ You will need to do this on the `controlplane`
 
 **Objectives**
 
-* Install a **Debian package**
-* Configure and start a **systemd service**
-* Configure **sysctl parameters** required by Kubernetes
+* Install a **Debian package** using `dpkg` command line utility
+* Configure and start a **systemd service** using `systemctl`
+* Configure **sysctl parameters** required by Kubernetes by writing to `/etc/sysctl.d/`
+

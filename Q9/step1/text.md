@@ -12,3 +12,5 @@ Configure these kernel params:
 * Set `net.ipv4.ip_forward=1`
 * Set `net.netfilter.nf_conntrack_max=131072`
 
+
+**Hint:** Check the `~/validation.log` file after each check to see what is wrong with your answer.
