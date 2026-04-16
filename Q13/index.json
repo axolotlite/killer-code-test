@@ -16,9 +16,9 @@
       "assets": {
         "host01": [
             {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
-            {"file": "namespace.yaml", "target": "/tmp/init/namespace.yaml"},
-            {"file": "deployment.yaml", "target": "/tmp/init/deployment.yaml"},
-            {"file": "svc.yaml", "target": "/tmp/init/svc.yaml"},
+            {"file": "namespace.yaml", "target": "/tmp/init/"},
+            {"file": "deployment.yaml", "target": "/tmp/init/"},
+            {"file": "svc.yaml", "target": "/tmp/init/"},
             {"file": "netpol-1.yaml", "target": "~/network-policies/"},
             {"file": "netpol-2.yaml", "target": "~/network-policies/"},
             {"file": "netpol-3.yaml", "target": "~/network-policies/"}
