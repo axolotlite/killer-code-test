@@ -16,13 +16,13 @@
       "assets": {
         "host01": [
             {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
-            {"file": "deployment.yaml", "target": "/tmp/init/deployment.yaml"},
-            {"file": "gateway-api-crds.yaml", "target": "/tmp/init/gateway-api-crds.yaml"},
-            {"file": "gatewayclass.yaml", "target": "/tmp/init/gatewayclass.yaml"},
-            {"file": "ingress.yaml", "target": "/tmp/init/ingress.yaml"},
-            {"file": "secret.yaml", "target": "/tmp/init/secret.yaml"},
-            {"file": "namespace.yaml", "target": "/tmp/init/namespace.yaml"},
-            {"file": "svc.yaml", "target": "/tmp/init/svc.yaml"}
+            {"file": "deployment.yaml", "target": "/tmp/init/"},
+            {"file": "gateway-api-crds.yaml", "target": "/tmp/init/"},
+            {"file": "gatewayclass.yaml", "target": "/tmp/init/"},
+            {"file": "ingress.yaml", "target": "/tmp/init/"},
+            {"file": "secret.yaml", "target": "/tmp/init/"},
+            {"file": "namespace.yaml", "target": "/tmp/init/"},
+            {"file": "svc.yaml", "target": "/tmp/init/"}
         ]
       }
     },
