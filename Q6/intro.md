@@ -12,6 +12,6 @@ ssh controlplane
 
 **Objectives**
 
-* List the **CRDs** of an operator
-* Use `kubectl explain` on **Custom Resources**
+* List the **CRDs** of an operator using `kubectl get crds`
+* Use `kubectl explain` on **Custom Resources** through `kubectl explain <crd>.spec.<object>`
 * Understand the **structure of CRDs**
