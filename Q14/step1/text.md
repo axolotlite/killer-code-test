@@ -10,3 +10,5 @@ Create a **new StorageClass** named `custom-storage`, make it the default Storag
 
 Ensure `custom-storage` is the **ONLY** default StorageClass  
 
+
+**Hint:** Check the `~/validation.log` file after each check to see what is wrong with your answer.

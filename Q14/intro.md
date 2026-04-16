@@ -17,3 +17,11 @@ You need to create a **new StorageClass** and configure it as the **default** fo
 
 You can use the documentation:
 - https://kubernetes.io/
+
+keyword:  
+* `storage class`  
+
+page `Storage Classes | Kubernetes`  
+page keywords:  
+* `kind: storage`  
+* `kind: PersistentVolume`  
