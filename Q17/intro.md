@@ -12,17 +12,7 @@ An **Nginx deployment** exists with a ConfigMap that supports **TLSv1.2** and **
 
 **Objectives**
 
-* Modify the **Nginx ConfigMap**
+* Modify the **Nginx ConfigMap** by removing the depricated **TLSV1.2**
 * Understand **SSL/TLS configuration**
+* Update the `hosts` file
 * Restart the deployment to **apply changes**
-
-You can use the documentation:  
-- https://kubernetes.io/
-
-keyword:  
-* `TBD`  
-
-page `TBD`  
-keywords:  
-* `TBD`  
-* `TBD`  
