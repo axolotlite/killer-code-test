@@ -2,15 +2,15 @@
 
 ### Tasks
 
-1. **Expose the Echo deployment** with a NodePort Service:
-* **Name:** `echo-service`
-* **Type:** `NodePort`
-* **NodePort:** `31284`
+1. **Expose the Echo deployment** in `echo-app` with a NodePort Service:
+    * **Name:** `echo-service`
+    * **Type:** `NodePort`
+    * **NodePort:** `31284`
 
 2. **Create an Ingress** named `echo` in `echo-app` namespace:
-* **Host:** `echo-service.org`
-* **PathType:** `Prefix`
-* **Path:** `/echo`
+    * **Host:** `echo-service.org`
+    * **PathType:** `Prefix`
+    * **Path:** `/echo`
 3. **Test accessibility**:
 
 ```bash
