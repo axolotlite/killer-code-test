@@ -23,6 +23,6 @@ keyword:
 * `taint`  
 
 page `Taints and Tolerations | Kubernetes`  
-keywords:  
+page keywords:  
 * `kubectl taint nodes`  
 * `kind: Pod`  
