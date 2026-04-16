@@ -7,3 +7,4 @@
 2. **Extract documentation** from the `Certificate` CRD:  
     * `subject` field and save it to `/root/subject.yaml`
     * `uris` field and save it to `/root/uris.yaml`
+**Hint:** Check the `~/verification.log` file after each check to see what is wrong with your answer.

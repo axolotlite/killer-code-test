@@ -23,6 +23,6 @@ keyword:
 * `priority`  
 
 page `Pod Priority and Preemption - Kubernetes`  
-keywords:  
+page keywords:  
 * `kind: Priority`  
 * `kind: Pod`  

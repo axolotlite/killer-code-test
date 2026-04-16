@@ -14,3 +14,4 @@
    * **Namespace:** `argocd`
    * **Do not install CRDs**
    * **Save the generated YAML manifest** to `/root/argo-helm.yaml`
+**Hint:** Check the `~/verification.log` file after each check to see what is wrong with your answer.

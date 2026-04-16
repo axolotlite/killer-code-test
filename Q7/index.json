@@ -16,9 +16,9 @@
       "assets": {
         "host01": [
             {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
-            {"file": "namespace.yaml", "target": "/tmp/init/namespace.yaml"},
-            {"file": "priorityclass.yaml", "target": "/tmp/init/priorityclass.yaml"},
-            {"file": "deployment.yaml", "target": "/tmp/init/deployment.yaml"}
+            {"file": "namespace.yaml", "target": "/tmp/init/"},
+            {"file": "priorityclass.yaml", "target": "/tmp/init/"},
+            {"file": "deployment.yaml", "target": "/tmp/init/"}
         ]
       }
     },
