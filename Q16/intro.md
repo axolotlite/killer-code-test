@@ -8,7 +8,7 @@ You need to configure it to be exposed via **NodePort**.
 
 **Objectives**
 
-* Configure **ports** in the deployment
+* Expose **ports** in the deployment using `kubectl export`
 * Create a **NodePort Service** with a specific port
 * Understand the relationship between **targetPort**, **port**, and **nodePort**
 
