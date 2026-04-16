@@ -38,8 +38,8 @@ if [ -n "$DEPLOY_NAME" ]; then
     wait_and_check_rollout deploy "$DEPLOY_NAME" "$NAMESPACE" "15s"
 fi
 
-# Test 1: TLS 1.2 (Should Fail/Timeout -> Returns 000)
-check_http_status "https://$HOST_ENTRY" "000" 1 1 "-k --tls-max 1.2"
+# Test 1: TLS 1.2 (Should Fail/Timeout -> Returns 000000)
+check_http_status "https://$HOST_ENTRY" "000000" 1 1 "-k --tls-max 1.2"
 
 # Test 2: TLS 1.3 (Should Succeed -> Returns 200)
 check_http_status "https://$HOST_ENTRY" "200" 3 2 "-k --tlsv1.3 --tls-max 1.3"
