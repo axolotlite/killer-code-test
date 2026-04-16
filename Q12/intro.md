@@ -23,6 +23,6 @@ keyword:
 * `ingress`  
 
 page `Ingress - Kubernetes`  
-keywords:  
+page keywords:  
 * `kind: Ingress`  
 * `host:`

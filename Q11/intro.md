@@ -18,7 +18,7 @@ keyword:
 * `tls conf`  
 
 page `TLS Configuration`  
-keywords:  
+page keywords:  
 * `kind: Gateway`  
 
 You can use the documentation:  
@@ -28,5 +28,5 @@ keyword:
 * `gateway`  
 
 page `Gateway API - Kubernetes`  
-keywords:  
+page keywords:  
 * `kind: httproute`  
