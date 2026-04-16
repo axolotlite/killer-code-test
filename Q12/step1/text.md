@@ -20,3 +20,5 @@ curl http://127.0.0.1:31284/echo
 ```bash
 curl http://echo-service.org/echo
 ```{{copy}}
+
+**Hint:** Check the `~/validation.log` file after each check to see what is wrong with your answer.
