@@ -1,6 +1,6 @@
 #!/bin/bash
 # verify.sh - Controlplane Troubleshooting Validation
-OUTPUT_FILE="${OUTPUT_FILE:-$HOME/validation-1.log}"
+OUTPUT_FILE="${OUTPUT_FILE:-$HOME/validation.log}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/utility.sh"

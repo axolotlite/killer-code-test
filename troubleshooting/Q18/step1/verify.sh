@@ -1,6 +1,6 @@
 #!/bin/bash
 # verify-pods.sh - Control Plane Pod Validation
-OUTPUT_FILE="${OUTPUT_FILE:-$HOME/validation-2.log}"
+OUTPUT_FILE="${OUTPUT_FILE:-$HOME/validation.log}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/utility.sh"
