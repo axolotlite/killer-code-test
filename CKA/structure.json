@@ -1,0 +1,11 @@
+{
+    "title": "CKA Domains Simulation",
+    "description": "This is a simulation of each Kubernetes domain",
+    "items": [
+        {"path":"cluster-arch"},
+        {"path":"service-networking"},
+        {"path":"storage"},
+        {"path":"troubleshooting"},
+        {"path":"workload-scheduling"}
+    ]
+  }
