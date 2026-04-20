@@ -1,4 +1,4 @@
-**CKA Lab 17: TLS Configuration**
+**TLS Configuration**
 
 ### Tasks
 Update the deployment in the `nginx-static` namespace.  

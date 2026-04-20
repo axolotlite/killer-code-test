@@ -1,4 +1,4 @@
-**CKA Lab 12: Ingress Configuration**
+**Ingress Configuration**
 
 ### Tasks
 

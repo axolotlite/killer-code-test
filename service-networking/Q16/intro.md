@@ -1,4 +1,4 @@
-**CKA Lab 16: NodePort Service**
+**NodePort Service**
 
 ### NodePort Service
 

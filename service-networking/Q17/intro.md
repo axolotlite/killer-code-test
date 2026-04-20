@@ -1,4 +1,4 @@
-**CKA Lab 17: TLS Configuration**
+**TLS Configuration**
 
 Start by ssh-ing into the controlplane node:
 ```

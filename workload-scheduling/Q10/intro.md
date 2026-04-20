@@ -1,4 +1,4 @@
-**CKA Lab 10: Taints and Tolerations**
+**Taints and Tolerations**
 
 Start by ssh-ing into the controlplane node:
 ```

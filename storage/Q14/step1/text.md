@@ -1,4 +1,4 @@
-**CKA Lab 14: StorageClass Configuration**
+**StorageClass Configuration**
 
 ### Tasks
 

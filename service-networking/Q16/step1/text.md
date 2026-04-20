@@ -1,4 +1,4 @@
-**CKA Lab 16: NodePort Service**
+**NodePort Service**
 
 ### Tasks
 The following should be done in the `relative` namespace  

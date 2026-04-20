@@ -1,4 +1,4 @@
-**CKA Lab 11: Gateway API Migration**
+**Gateway API Migration**
 
 ### Gateway API Migration
 

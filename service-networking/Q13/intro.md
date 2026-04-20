@@ -1,4 +1,4 @@
-**CKA Lab 13: Network Policy Selection**
+**Network Policy Selection**
 
 Start by ssh-ing into the controlplane node:
 ```
