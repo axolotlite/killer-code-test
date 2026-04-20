@@ -1,0 +1,10 @@
+{
+    "title": "CKA Domains Simulation",
+    "description": "This is a simulation of each Kubernetes domain",
+    "items": [
+        {"path":"Q2"},
+        {"path":"Q6"},
+        {"path":"Q8"},
+        {"path":"Q9"}
+    ]
+  }
