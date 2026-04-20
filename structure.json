@@ -1,9 +1,24 @@
 {
     "items": [
-    {"path": "cluster-arch"},
-    {"path": "service-networking"},
-    {"path": "storage"},
-    {"path": "troubleshooting"},
-    {"path": "workload-scheduling"}
+      {
+        "title": "CKA Domain - Cluster Architecture",
+        "path": "cluster-arch"
+      },
+      {
+        "title": "CKA Domain - Services & Networking",
+        "path": "service-networking"
+      },
+      {
+        "title": "CKA Domain - Storage",
+        "path": "storage"
+      },
+      {
+        "title": "CKA Domain - Cluster Troubleshooting",
+        "path": "troubleshooting"
+      },
+      {
+        "title": "CKA Domain - Workloads & Scheduling",
+        "path": "workload-scheduling"
+      }
     ]
   }
