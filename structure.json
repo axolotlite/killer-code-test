@@ -1,5 +1,9 @@
 {
     "items": [
-      { "path": "CKA" }
+      {"path": "CKA/cluster-arch"},
+      {"path": "CKA/service-networking"},
+      {"path": "CKA/storage"},
+      {"path": "CKA/troubleshooting"},
+      {"path": "CKA/workload-scheduling"}
     ]
   }
