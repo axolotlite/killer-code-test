@@ -1,1 +1,1 @@
-../../../utility/ssh.sh
+../../utility/ssh.sh
