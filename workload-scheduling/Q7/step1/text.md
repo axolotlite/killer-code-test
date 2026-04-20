@@ -1,4 +1,4 @@
-**CKA Lab 07: PriorityClass**
+**PriorityClass**
 
 ### Tasks
 

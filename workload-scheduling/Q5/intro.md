@@ -1,4 +1,4 @@
-**CKA Lab 05: Horizontal Pod Autoscaler (HPA)**
+**Horizontal Pod Autoscaler (HPA)**
 
 Start by ssh-ing into the controlplane node:
 ```

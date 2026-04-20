@@ -1,4 +1,4 @@
-**CKA Lab 09: cri-dockerd Installation**
+**cri-dockerd Installation**
 You are already on an ubuntu node, preparing CRIO-Dockerd for a future kubernetes install
 
 ### cri-dockerd Installation

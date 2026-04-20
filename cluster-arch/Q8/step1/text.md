@@ -1,4 +1,4 @@
-**CKA Lab 08: CNI Installation**
+**CNI Installation**
 
 ### Tasks
 

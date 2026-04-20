@@ -1,4 +1,4 @@
-**CKA Lab 04: Resource Allocation**
+**Resource Allocation**
 
 Start by ssh-ing into the controlplane node:
 ```

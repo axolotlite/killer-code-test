@@ -1,4 +1,4 @@
-**CKA Lab 08: CNI Installation**
+**CNI Installation**
 Start by ssh-ing into the controlplane node:
 ```
 ssh controlplane

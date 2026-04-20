@@ -1,4 +1,4 @@
-**CKA Lab 02: ArgoCD Installation with Helm**
+**ArgoCD Installation with Helm**
 
 Start by ssh-ing into the controlplane node:
 ```

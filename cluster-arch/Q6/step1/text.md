@@ -1,4 +1,4 @@
-**CKA Lab 06: Custom Resource Definitions (CRDs)**
+**Custom Resource Definitions (CRDs)**
 
 ### Tasks
 

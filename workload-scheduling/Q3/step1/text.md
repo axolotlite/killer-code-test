@@ -1,4 +1,4 @@
-**CKA Lab 03: Sidecar Container Pattern**
+**Sidecar Container Pattern**
 
 ### Tasks
 

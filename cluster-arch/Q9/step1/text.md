@@ -1,4 +1,4 @@
-**CKA Lab 09: cri-dockerd Installation**
+**cri-dockerd Installation**
 
 ### Tasks
 

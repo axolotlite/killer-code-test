@@ -1,4 +1,4 @@
-**CKA Lab 03: Sidecar Container Pattern**
+**Sidecar Container Pattern**
 
 Start by ssh-ing into the controlplane node:
 ```
