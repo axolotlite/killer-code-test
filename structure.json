@@ -1,10 +1,9 @@
 {
     "items": [
-    {"path": "CKA"},  
-    {"path": "CKA/cluster-arch"},
-    {"path": "CKA/service-networking"},
-    {"path": "CKA/storage"},
-    {"path": "CKA/troubleshooting"},
-    {"path": "CKA/workload-scheduling"}
+    {"path": "cluster-arch"},
+    {"path": "service-networking"},
+    {"path": "storage"},
+    {"path": "troubleshooting"},
+    {"path": "workload-scheduling"}
     ]
   }
