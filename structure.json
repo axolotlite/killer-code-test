@@ -2,23 +2,28 @@
     "items": [
       {
         "title": "CKA Domain - Cluster Architecture",
-        "path": "cluster-arch"
+        "path": "cluster-arch",
+        "description": "Focus: cluster bootstrap, CNI, CRI, API extensions, control plane components"
       },
       {
         "title": "CKA Domain - Services & Networking",
-        "path": "service-networking"
+        "path": "service-networking",
+        "description": "Focus: Services, Ingress, Gateway API, TLS, NetworkPolicy"
       },
       {
         "title": "CKA Domain - Storage",
-        "path": "storage"
+        "path": "storage",
+        "description": "Focus: PV, PVC, StorageClass lifecycle and their configuration"
       },
       {
         "title": "CKA Domain - Cluster Troubleshooting",
-        "path": "troubleshooting"
+        "path": "troubleshooting",
+        "description": "Focus: Control plane failures, component debugging, cluster repair"
       },
       {
         "title": "CKA Domain - Workloads & Scheduling",
-        "path": "workload-scheduling"
+        "path": "workload-scheduling",
+        "description": "Focus: Pod configuration, resource management, scaling, placement control"
       }
     ]
   }
