@@ -1,6 +1,6 @@
 {
-    "title": "Troubleshoot Static Manifests - ETCD",
-    "description": "Troubleshooting the failing Kube-api Pod",
+    "title": "Troubleshoot Static Manifests - Scheduler & Controller",
+    "description": "Troubleshooting the resource starved Scheduler & Controller",
     "details": {
       "intro": {
         "text": "intro.md",
@@ -15,7 +15,8 @@
       "assets": {
         "host01": [
             {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
-            {"file": "kube-apiserver.yaml", "target": "/etc/kubernetes/manifests/"}
+            {"file": "kube-controller-manager.yaml", "target": "/etc/kubernetes/manifests/"},
+            {"file": "kube-scheduler.yaml", "target": "/etc/kubernetes/manifests/"}
         ]
       }
     },

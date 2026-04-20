@@ -1,4 +1,4 @@
-**Troubleshooting Kubernetes API Server**
+**Troubleshooting Kubernetes API Pods**
 Start by ssh-ing into the controlplane node:
 ```
 ssh controlplane
@@ -11,5 +11,4 @@ Previously the etcd server was external, after the migration the etcd server has
 
 **Objectives**
 * Fix the **etcd connectivity** issue by reading the cri-o logs through `crictl`
-* Fix the kube **Controller** & **Scheduler** issue by reading the **Pod description** events
-* Deploy image to the default namespace
+* Update the **Port** inside the etcd static manifest

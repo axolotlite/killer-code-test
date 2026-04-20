@@ -1,4 +1,4 @@
-**CKA Lab 15: Controlplane Troubleshooting**
+**Controlplane Troubleshooting**
 
 ### Tasks
 The `kube-apiserver` is down due to incorrect etcd configuration

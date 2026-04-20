@@ -1,4 +1,4 @@
-**CKA Lab 15: Controlplane Troubleshooting**
+**Controlplane Troubleshooting**
 
 ### Tasks
 The `kube-controller-manager` and `kube-scheduler` are in **CrashLoop**
