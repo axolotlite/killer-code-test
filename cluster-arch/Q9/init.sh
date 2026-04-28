@@ -2,7 +2,7 @@
 # init.sh - Prepares Killercoda environment for CKA Lab 09
 
 # 1. Download the cri-dockerd package
-CRI_DOCKERD_VERSION="0.3.15"
+CRI_DOCKERD_VERSION="0.3.24"
 UBUNTU_CODENAME=$(lsb_release -cs)
 
 if [[ "$UBUNTU_CODENAME" != "jammy" && "$UBUNTU_CODENAME" != "focal" ]]; then

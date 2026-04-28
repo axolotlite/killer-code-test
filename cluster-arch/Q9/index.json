@@ -1,6 +1,6 @@
 {
     "title": "Install Container Runtime",
-    "description": "Install CIO-Dockerd on a node",
+    "description": "Install CRI-Dockerd on a node",
     "details": {
       "intro": {
         "text": "intro.md",
