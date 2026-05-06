@@ -24,6 +24,11 @@
         "title": "CKA Domain - Workloads & Scheduling",
         "path": "workload-scheduling",
         "description": "Focus: Pod configuration, resource management, scaling, placement control"
+      },
+      {
+        "title": "Learning - Kubernetes Wargames",
+        "path": "kubernetes-wargames",
+        "description": "Learn kubernetes by breaking it"
       }
     ]
   }
