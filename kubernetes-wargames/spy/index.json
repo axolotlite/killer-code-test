@@ -13,8 +13,8 @@
     "assets": {
       "host01": [
         {
-          "file": "group-a",
-          "target": "~/"
+          "file": "group-a/*",
+          "target": "~/group-a"
         }
       ]
     }
