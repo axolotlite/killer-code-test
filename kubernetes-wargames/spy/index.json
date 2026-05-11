@@ -13,7 +13,7 @@
     "assets": {
       "host01": [
         {
-          "file": "group-a/*",
+          "file": "group-a/*.yaml",
           "target": "~/group-a"
         }
       ]
