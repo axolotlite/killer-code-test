@@ -1,0 +1,25 @@
+{
+  "title": "Kubernetes Wargame - Spy",
+  "description": "Apply all the target manifests and find the spy",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "text": "step0/text.md"
+      }
+    ],
+    "assets": {
+      "host01": [
+        {
+          "file": "group-a",
+          "target": "~/"
+        }
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-2nodes"
+  }
+}
