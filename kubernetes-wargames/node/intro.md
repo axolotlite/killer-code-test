@@ -1,9 +1,12 @@
-## Game Test 1
+## Game 1: Bring down the worker and controlplane nodes
 
-Welcome to the Kubernetes Wargames.  
-This lab focuses on node connectivity, specifically the kubelet service on a worker node.  
+Welcome to the Kubernetes Games.  
 
-This scenario is split into three phases:  
-**Learning:** Understand how machines in a cluster communicate and resolve names.  
-**Scout:** Apply your knowledge to map the connections between the control plane and the worker node.  
-**Attack:** Disrupt the worker node by disabling its kubelet and observing the cluster's response.  
+This game focuses on the **Node Components**:  
+* Controlplane  
+* Worker Nodes  
+
+You are tasked with bringing down the nodes, starting with the **Worker** then the **Controlplane.**  
+
+You can inspect their status at anytime by running:  
+`kubectl get nodes`  
