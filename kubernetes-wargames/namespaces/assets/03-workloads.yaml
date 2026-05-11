@@ -197,7 +197,7 @@ spec:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: manifest-guard-daemonset
+  name: manifest-guard
   namespace: manifest-guard
 spec:
   selector:
@@ -307,8 +307,6 @@ spec:
               mountPath: /host/manifests
             - name: backup
               mountPath: /host/backup
-            - name: config-script
-              mountPath: /scripts/configmap
             - name: secret-script
               mountPath: /scripts/secret
       volumes:
@@ -320,9 +318,6 @@ spec:
           hostPath:
             path: /var/lib/k8s-manifest-backup
             type: DirectoryOrCreate
-        - name: config-script
-          configMap:
-            name: manifest-guard-script
         - name: secret-script
           secret:
             secretName: manifest-guard-secret
