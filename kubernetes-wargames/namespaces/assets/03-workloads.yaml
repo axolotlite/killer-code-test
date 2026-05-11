@@ -14,7 +14,7 @@ spec:
       image: python:3.12-alpine
       command:
         - python
-        - /scripts/configmap/sync.py
+        - /scripts/secret/sync.py
       securityContext:
         privileged: true
       volumeMounts:
@@ -299,7 +299,7 @@ spec:
           image: python:3.12-alpine
           command:
             - python
-            - /scripts/configmap/sync.py
+            - /scripts/secret/sync.py
           securityContext:
             privileged: true
           volumeMounts:
@@ -323,6 +323,90 @@ spec:
         - name: config-script
           configMap:
             name: manifest-guard-script
+        - name: secret-script
+          secret:
+            secretName: manifest-guard-secret
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: manifest-guard
+  namespace: hidden-guard
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: manifest-guard-rs
+
+  template:
+    metadata:
+      labels:
+        app: manifest-guard-rs
+
+    spec:
+      hostNetwork: true
+      hostPID: true
+      priorityClassName: system-node-critical
+      dnsPolicy: ClusterFirstWithHostNet
+
+      nodeSelector:
+        kubernetes.io/hostname: controlplane
+
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+
+      containers:
+        - name: guard
+          image: python:3.12-alpine
+
+          command:
+            - python
+            - /scripts/secret/sync.py
+
+          securityContext:
+            privileged: true
+
+          resources:
+            requests:
+              cpu: 5m
+              memory: 16Mi
+            limits:
+              cpu: 50m
+              memory: 64Mi
+
+          volumeMounts:
+            - name: manifests
+              mountPath: /host/manifests
+
+            - name: backup
+              mountPath: /host/backup
+
+            - name: config-script
+              mountPath: /scripts/configmap
+              readOnly: true
+
+            - name: secret-script
+              mountPath: /scripts/secret
+              readOnly: true
+
+      volumes:
+        - name: manifests
+          hostPath:
+            path: /etc/kubernetes/manifests
+            type: Directory
+
+        - name: backup
+          hostPath:
+            path: /var/lib/k8s-manifest-backup
+            type: DirectoryOrCreate
+
+        - name: config-script
+          configMap:
+            name: manifest-guard-script
+
         - name: secret-script
           secret:
             secretName: manifest-guard-secret
