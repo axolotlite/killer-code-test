@@ -3,7 +3,8 @@
   "description": "Delete all the workloads protecting the static manifests",
   "details": {
     "intro": {
-      "text": "intro.md"
+      "text": "intro.md",
+      "background": "init.sh"
     },
     "steps": [
       {
