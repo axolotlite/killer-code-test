@@ -1,9 +1,9 @@
-## Intro:  
-BREAK THE CLUSTER!!  
-Disrubt the kubernetes cluster operation by disabling the `kubelet` on the worker node and confirm that it's status is no longer `Ready`  
+## Tasks:  
+Ensure that the controlplane is no longer operational:
+* Write the cluster api endpoint url into `~/reports/api-url.txt`
+* Delete the manifests for the static pods in the `kube-system` namespace
+* Write the default api endpoint into `~/reports/default-api-url.txt`
+* Delete the kubeconfig
 
-## Task:  
-From inside the vm, disable the service using:  
-* `systemctl`: to `stop` the `kubelet` service on the worker node  
-* `exit`: exit the ssh session from the node  
-* `kubectl`: to `get` the `nodes` status
+Once the static pods and etcd are deleted, this cluster is no longer recoverable.  
+Task Well Done!  

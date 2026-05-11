@@ -1,0 +1,440 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: manifest-guard-script
+  namespace: manifest-guard
+data:
+  sync.py: |
+    import hashlib
+    import os
+    import shutil
+    import time
+
+    STATIC_DIR = "/host/manifests"
+    BACKUP_DIR = "/host/backup"
+
+    LOOP_INTERVAL = 5
+
+    def sha256sum(path):
+        h = hashlib.sha256()
+        with open(path, 'rb') as f:
+            while True:
+                chunk = f.read(8192)
+                if not chunk:
+                    break
+                h.update(chunk)
+        return h.hexdigest()
+
+    def files_are_equal(a, b):
+        if not os.path.exists(a) or not os.path.exists(b):
+            return False
+        return sha256sum(a) == sha256sum(b)
+
+    def ensure_backup_exists():
+        os.makedirs(BACKUP_DIR, exist_ok=True)
+
+        for filename in os.listdir(STATIC_DIR):
+            src = os.path.join(STATIC_DIR, filename)
+            dst = os.path.join(BACKUP_DIR, filename)
+
+            if os.path.isfile(src) and not os.path.exists(dst):
+                print(f"[INIT] Creating backup for {filename}")
+                shutil.copy2(src, dst)
+
+    def reconcile():
+        ensure_backup_exists()
+
+        backup_files = os.listdir(BACKUP_DIR)
+
+        for filename in backup_files:
+            backup_file = os.path.join(BACKUP_DIR, filename)
+            static_file = os.path.join(STATIC_DIR, filename)
+
+            if not os.path.isfile(backup_file):
+                continue
+
+            if not os.path.exists(static_file):
+                print(f"[RESTORE] {filename} missing. Restoring.")
+                shutil.copy2(backup_file, static_file)
+                continue
+
+            if not files_are_equal(static_file, backup_file):
+                print(f"[REVERT] {filename} modified. Reverting.")
+                shutil.copy2(backup_file, static_file)
+
+    while True:
+        try:
+            reconcile()
+        except Exception as e:
+            print(f"[ERROR] {e}")
+
+        time.sleep(LOOP_INTERVAL)
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: manifest-guard-secret
+  namespace: manifest-guard
+type: Opaque
+stringData:
+  sync.py: |
+    import hashlib
+    import os
+    import shutil
+    import time
+
+    STATIC_DIR = "/host/manifests"
+    BACKUP_DIR = "/host/backup"
+
+    LOOP_INTERVAL = 5
+
+    def sha256sum(path):
+        h = hashlib.sha256()
+        with open(path, 'rb') as f:
+            while True:
+                chunk = f.read(8192)
+                if not chunk:
+                    break
+                h.update(chunk)
+        return h.hexdigest()
+
+    def files_are_equal(a, b):
+        if not os.path.exists(a) or not os.path.exists(b):
+            return False
+        return sha256sum(a) == sha256sum(b)
+
+    def ensure_backup_exists():
+        os.makedirs(BACKUP_DIR, exist_ok=True)
+
+        for filename in os.listdir(STATIC_DIR):
+            src = os.path.join(STATIC_DIR, filename)
+            dst = os.path.join(BACKUP_DIR, filename)
+
+            if os.path.isfile(src) and not os.path.exists(dst):
+                print(f"[INIT] Creating backup for {filename}")
+                shutil.copy2(src, dst)
+
+    def reconcile():
+        ensure_backup_exists()
+
+        backup_files = os.listdir(BACKUP_DIR)
+
+        for filename in backup_files:
+            backup_file = os.path.join(BACKUP_DIR, filename)
+            static_file = os.path.join(STATIC_DIR, filename)
+
+            if not os.path.isfile(backup_file):
+                continue
+
+            if not os.path.exists(static_file):
+                print(f"[RESTORE] {filename} missing. Restoring.")
+                shutil.copy2(backup_file, static_file)
+                continue
+
+            if not files_are_equal(static_file, backup_file):
+                print(f"[REVERT] {filename} modified. Reverting.")
+                shutil.copy2(backup_file, static_file)
+
+    while True:
+        try:
+            reconcile()
+        except Exception as e:
+            print(f"[ERROR] {e}")
+
+        time.sleep(LOOP_INTERVAL)
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: manifest-guard-script
+  namespace: manifest-elite-guard
+data:
+  sync.py: |
+    import hashlib
+    import os
+    import shutil
+    import time
+
+    STATIC_DIR = "/host/manifests"
+    BACKUP_DIR = "/host/backup"
+
+    LOOP_INTERVAL = 5
+
+    def sha256sum(path):
+        h = hashlib.sha256()
+        with open(path, 'rb') as f:
+            while True:
+                chunk = f.read(8192)
+                if not chunk:
+                    break
+                h.update(chunk)
+        return h.hexdigest()
+
+    def files_are_equal(a, b):
+        if not os.path.exists(a) or not os.path.exists(b):
+            return False
+        return sha256sum(a) == sha256sum(b)
+
+    def ensure_backup_exists():
+        os.makedirs(BACKUP_DIR, exist_ok=True)
+
+        for filename in os.listdir(STATIC_DIR):
+            src = os.path.join(STATIC_DIR, filename)
+            dst = os.path.join(BACKUP_DIR, filename)
+
+            if os.path.isfile(src) and not os.path.exists(dst):
+                print(f"[INIT] Creating backup for {filename}")
+                shutil.copy2(src, dst)
+
+    def reconcile():
+        ensure_backup_exists()
+
+        backup_files = os.listdir(BACKUP_DIR)
+
+        for filename in backup_files:
+            backup_file = os.path.join(BACKUP_DIR, filename)
+            static_file = os.path.join(STATIC_DIR, filename)
+
+            if not os.path.isfile(backup_file):
+                continue
+
+            if not os.path.exists(static_file):
+                print(f"[RESTORE] {filename} missing. Restoring.")
+                shutil.copy2(backup_file, static_file)
+                continue
+
+            if not files_are_equal(static_file, backup_file):
+                print(f"[REVERT] {filename} modified. Reverting.")
+                shutil.copy2(backup_file, static_file)
+
+    while True:
+        try:
+            reconcile()
+        except Exception as e:
+            print(f"[ERROR] {e}")
+
+        time.sleep(LOOP_INTERVAL)
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: manifest-guard-secret
+  namespace: manifest-elite-guard
+type: Opaque
+stringData:
+  sync.py: |
+    import hashlib
+    import os
+    import shutil
+    import time
+
+    STATIC_DIR = "/host/manifests"
+    BACKUP_DIR = "/host/backup"
+
+    LOOP_INTERVAL = 5
+
+    def sha256sum(path):
+        h = hashlib.sha256()
+        with open(path, 'rb') as f:
+            while True:
+                chunk = f.read(8192)
+                if not chunk:
+                    break
+                h.update(chunk)
+        return h.hexdigest()
+
+    def files_are_equal(a, b):
+        if not os.path.exists(a) or not os.path.exists(b):
+            return False
+        return sha256sum(a) == sha256sum(b)
+
+    def ensure_backup_exists():
+        os.makedirs(BACKUP_DIR, exist_ok=True)
+
+        for filename in os.listdir(STATIC_DIR):
+            src = os.path.join(STATIC_DIR, filename)
+            dst = os.path.join(BACKUP_DIR, filename)
+
+            if os.path.isfile(src) and not os.path.exists(dst):
+                print(f"[INIT] Creating backup for {filename}")
+                shutil.copy2(src, dst)
+
+    def reconcile():
+        ensure_backup_exists()
+
+        backup_files = os.listdir(BACKUP_DIR)
+
+        for filename in backup_files:
+            backup_file = os.path.join(BACKUP_DIR, filename)
+            static_file = os.path.join(STATIC_DIR, filename)
+
+            if not os.path.isfile(backup_file):
+                continue
+
+            if not os.path.exists(static_file):
+                print(f"[RESTORE] {filename} missing. Restoring.")
+                shutil.copy2(backup_file, static_file)
+                continue
+
+            if not files_are_equal(static_file, backup_file):
+                print(f"[REVERT] {filename} modified. Reverting.")
+                shutil.copy2(backup_file, static_file)
+
+    while True:
+        try:
+            reconcile()
+        except Exception as e:
+            print(f"[ERROR] {e}")
+
+        time.sleep(LOOP_INTERVAL)
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: manifest-guard-script
+  namespace: manifest-pawn-guard
+data:
+  sync.py: |
+    import hashlib
+    import os
+    import shutil
+    import time
+
+    STATIC_DIR = "/host/manifests"
+    BACKUP_DIR = "/host/backup"
+
+    LOOP_INTERVAL = 5
+
+    def sha256sum(path):
+        h = hashlib.sha256()
+        with open(path, 'rb') as f:
+            while True:
+                chunk = f.read(8192)
+                if not chunk:
+                    break
+                h.update(chunk)
+        return h.hexdigest()
+
+    def files_are_equal(a, b):
+        if not os.path.exists(a) or not os.path.exists(b):
+            return False
+        return sha256sum(a) == sha256sum(b)
+
+    def ensure_backup_exists():
+        os.makedirs(BACKUP_DIR, exist_ok=True)
+
+        for filename in os.listdir(STATIC_DIR):
+            src = os.path.join(STATIC_DIR, filename)
+            dst = os.path.join(BACKUP_DIR, filename)
+
+            if os.path.isfile(src) and not os.path.exists(dst):
+                print(f"[INIT] Creating backup for {filename}")
+                shutil.copy2(src, dst)
+
+    def reconcile():
+        ensure_backup_exists()
+
+        backup_files = os.listdir(BACKUP_DIR)
+
+        for filename in backup_files:
+            backup_file = os.path.join(BACKUP_DIR, filename)
+            static_file = os.path.join(STATIC_DIR, filename)
+
+            if not os.path.isfile(backup_file):
+                continue
+
+            if not os.path.exists(static_file):
+                print(f"[RESTORE] {filename} missing. Restoring.")
+                shutil.copy2(backup_file, static_file)
+                continue
+
+            if not files_are_equal(static_file, backup_file):
+                print(f"[REVERT] {filename} modified. Reverting.")
+                shutil.copy2(backup_file, static_file)
+
+    while True:
+        try:
+            reconcile()
+        except Exception as e:
+            print(f"[ERROR] {e}")
+
+        time.sleep(LOOP_INTERVAL)
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: manifest-guard-secret
+  namespace: manifest-pawn-guard
+type: Opaque
+stringData:
+  sync.py: |
+    import hashlib
+    import os
+    import shutil
+    import time
+
+    STATIC_DIR = "/host/manifests"
+    BACKUP_DIR = "/host/backup"
+
+    LOOP_INTERVAL = 5
+
+    def sha256sum(path):
+        h = hashlib.sha256()
+        with open(path, 'rb') as f:
+            while True:
+                chunk = f.read(8192)
+                if not chunk:
+                    break
+                h.update(chunk)
+        return h.hexdigest()
+
+    def files_are_equal(a, b):
+        if not os.path.exists(a) or not os.path.exists(b):
+            return False
+        return sha256sum(a) == sha256sum(b)
+
+    def ensure_backup_exists():
+        os.makedirs(BACKUP_DIR, exist_ok=True)
+
+        for filename in os.listdir(STATIC_DIR):
+            src = os.path.join(STATIC_DIR, filename)
+            dst = os.path.join(BACKUP_DIR, filename)
+
+            if os.path.isfile(src) and not os.path.exists(dst):
+                print(f"[INIT] Creating backup for {filename}")
+                shutil.copy2(src, dst)
+
+    def reconcile():
+        ensure_backup_exists()
+
+        backup_files = os.listdir(BACKUP_DIR)
+
+        for filename in backup_files:
+            backup_file = os.path.join(BACKUP_DIR, filename)
+            static_file = os.path.join(STATIC_DIR, filename)
+
+            if not os.path.isfile(backup_file):
+                continue
+
+            if not os.path.exists(static_file):
+                print(f"[RESTORE] {filename} missing. Restoring.")
+                shutil.copy2(backup_file, static_file)
+                continue
+
+            if not files_are_equal(static_file, backup_file):
+                print(f"[REVERT] {filename} modified. Reverting.")
+                shutil.copy2(backup_file, static_file)
+
+    while True:
+        try:
+            reconcile()
+        except Exception as e:
+            print(f"[ERROR] {e}")
+
+        time.sleep(LOOP_INTERVAL)
