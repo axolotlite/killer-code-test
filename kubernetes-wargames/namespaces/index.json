@@ -1,6 +1,6 @@
 {
-  "title": "Kubernetes Wargame - Worker Kubelet",
-  "description": "Disable the kubelet on a worker node",
+  "title": "Kubernetes Wargame - Namespaces and Workloads",
+  "description": "Delete all the workloads protecting the static manifests",
   "details": {
     "intro": {
       "text": "intro.md"
