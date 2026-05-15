@@ -4,7 +4,8 @@
     "details": {
         "intro": {
             "text": "intro.md",
-            "foreground": "ssh.sh"
+            "foreground": "ssh.sh",
+            "background": "init.sh"
         },
         "steps": [
             {
@@ -32,15 +33,15 @@
                 },
                 {
                     "file": "workloads-old.yaml",
-                    "target": "/tmp/init/"
+                    "target": "~/deploy"
                 },
                 {
                     "file": "ingress-old.yaml",
-                    "target": "/tmp/init/"
+                    "target": "~/deploy"
                 },
                 {
                     "file": "rbac-psp-old.yaml",
-                    "target": "/tmp/init/"
+                    "target": "~/deploy"
                 }
             ]
         }
