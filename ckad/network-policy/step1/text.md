@@ -2,29 +2,36 @@
 
 ### Tasks
 
-You **cannot create, modify, or delete** any NetworkPolicy. You may only **label** Pods or Deployments.
+You **cannot create, modify, or delete** any NetworkPolicy. You may only **label** Namespaces, Pods, or Deployments.
 
-You will find a copy of the Network Policy manifests at the `~/network-policy`, these are provided for you to read, DO NOT APPLY or CHANGE them.  
+You will find a copy of the Network Policy manifests at `~/network-policies/`, these are provided for you to read, DO NOT APPLY or CHANGE them.
 
-In the `golden-hawk` namespace, configure the environment so that the `backend` Pod can **only** send and receive traffic to/from `front` and `db`.
+You can find a copy of the deployments at `~/deployments` you can update and deploy them.  
+
+The Deployments are in separate namespaces:
+* `backend` → namespace `golden-hawk`
+* `front` → namespace `frontend`
+* `db` → namespace `database`
+
+Configure the environment so that `backend` can **only** send and receive traffic to/from `front` and `db`.
 
 1. **Inspect the existing NetworkPolicies** in the `golden-hawk` namespace
 
    * Identify the `podSelector` that selects the restricted Pod
-   * Identify the `ingress.from` and `egress.to` selectors that allow traffic from `front` and `db`
+   * Identify the `namespaceSelector` and `podSelector` used in `ingress.from` and `egress.to`
 
-2. **Label the `backend` Deployment** so it is selected by the NetworkPolicies
+2. **Label the `backend` Deployment** (in `golden-hawk`) so it is selected by the NetworkPolicies
 
    * Apply the label the `default-deny` and `allow-front-db` policies expect on the restricted Pod
 
-3. **Label the `front` Deployment** so it matches the allow-rule selectors
+3. **Label the `frontend` namespace** so it matches the `namespaceSelector` in the allow-rules
 
-   * Apply the label that the `allow-front-db` policy references in its `ingress.from` and `egress.to` rules
+4. **Label the `front` Deployment** (in `frontend`) so it matches the `podSelector` in the allow-rules
 
-4. **Label the `db` Deployment** so it matches the allow-rule selectors
+5. **Label the `database` namespace** so it matches the `namespaceSelector` in the allow-rules
 
-   * Apply the label that the `allow-front-db` policy references in its `ingress.from` and `egress.to` rules
+6. **Label the `db` Deployment** (in `database`) so it matches the `podSelector` in the allow-rules
 
-**Note:** Label the **Deployment's pod template** (not just the running Pod) so labels persist across restarts.
+**Note:** Label the **Deployment's pod template** (not just the running Pod) so pod labels persist across restarts.
 
 **Hint:** Check the `~/validation.log` file after each check to see what is wrong with your answer.

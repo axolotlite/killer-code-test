@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: db
-  namespace: golden-hawk
+  namespace: database
   labels:
     app: db
 spec:

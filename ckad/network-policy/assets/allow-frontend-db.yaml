@@ -12,18 +12,30 @@ spec:
   - Egress
   ingress:
   - from:
-    - podSelector:
+    - namespaceSelector:
+        matchLabels:
+          tier: frontend
+      podSelector:
         matchLabels:
           name: front
-    - podSelector:
+    - namespaceSelector:
+        matchLabels:
+          tier: database
+      podSelector:
         matchLabels:
           name: db
   egress:
   - to:
-    - podSelector:
+    - namespaceSelector:
+        matchLabels:
+          tier: frontend
+      podSelector:
         matchLabels:
           name: front
-    - podSelector:
+    - namespaceSelector:
+        matchLabels:
+          tier: database
+      podSelector:
         matchLabels:
           name: db
   - to:
