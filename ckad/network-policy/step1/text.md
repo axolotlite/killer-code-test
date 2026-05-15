@@ -4,6 +4,8 @@
 
 You **cannot create, modify, or delete** any NetworkPolicy. You may only **label** Pods or Deployments.
 
+You will find a copy of the Network Policy manifests at the `~/network-policy`, these are provided for you to read, DO NOT APPLY or CHANGE them.  
+
 In the `golden-hawk` namespace, configure the environment so that the `backend` Pod can **only** send and receive traffic to/from `front` and `db`.
 
 1. **Inspect the existing NetworkPolicies** in the `golden-hawk` namespace
