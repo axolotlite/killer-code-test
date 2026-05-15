@@ -32,15 +32,15 @@
                     "target": "/tmp/init/"
                 },
                 {
-                    "file": "workloads-old.yaml",
+                    "file": "workloads.yaml",
                     "target": "~/deploy"
                 },
                 {
-                    "file": "ingress-old.yaml",
+                    "file": "ingress.yaml",
                     "target": "~/deploy"
                 },
                 {
-                    "file": "rbac-psp-old.yaml",
+                    "file": "rbac-psp.yaml",
                     "target": "~/deploy"
                 }
             ]

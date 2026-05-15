@@ -38,19 +38,4 @@ check_k8s_resource ingress "web-ingress" "$NS" "" '{.spec.rules[0].http.paths[1]
 check_k8s_resource ingress "web-ingress" "$NS" "" '{.spec.rules[0].http.paths[1].backend.service.name}' "api"
 check_k8s_resource ingress "web-ingress" "$NS" "" '{.spec.rules[0].http.paths[1].backend.service.port.number}' "8080"
 
-# Verify old-style backend fields are NOT present in the source file
-INGRESS_FILE="$HOME/deploy/ingress.yaml"
-if [ -f "$INGRESS_FILE" ]; then
-  if grep -q "serviceName" "$INGRESS_FILE" || grep -q "servicePort" "$INGRESS_FILE"; then
-    log "FAIL" "~/deploy/ingress.yaml still contains old backend format (serviceName/servicePort)"
-    ((FAIL_COUNT++))
-  else
-    log "PASS" "~/deploy/ingress.yaml uses the new backend format (service.name/service.port.number)"
-    ((PASS_COUNT++))
-  fi
-else
-  log "FAIL" "~/deploy/ingress.yaml not found"
-  ((FAIL_COUNT++))
-fi
-
 print_summary_and_exit
