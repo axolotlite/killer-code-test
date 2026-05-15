@@ -17,17 +17,12 @@ A Deployment named `webapp` exists in the `production` namespace with hardcoded 
 * Understand the relationship between **Secrets** and **Pod specs**
 
 You can use the documentation:
-- https://kubernetes.io/docs/concepts/configuration/secret/
+- https://kubernetes.io/
 
 keywords:
-* `Secrets`
-* `Using Secrets as environment variables`
+* `Secret key ref`
 
-Page `Distribute Credentials Securely Using Secrets`
+Page `Distribute Credentials Securely Using Secrets - Kubernetes`
 page keywords:
-* `Create a Secret`
+* `kind: pod`
 * `secretKeyRef`
-
-Page `Managing Secrets using kubectl`
-page keywords:
-* `kubectl create secret generic`
