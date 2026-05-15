@@ -31,4 +31,3 @@ page keywords:
 Page `Jobs | Kubernetes`
 page keywords:
 * `deadline`
-* `--from=cronjob`

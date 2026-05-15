@@ -40,12 +40,13 @@ check_k8s_resource cronjob "nameserver" "" "" '{.spec.jobTemplate.spec.template.
 # Task 4: Manual Job created from CronJob
 check_k8s_resource job "nameserver-resolver" "" "" "" ""
 
-# Verify the manual job was created from the correct cronjob
-if kubectl get job nameserver-resolver -o jsonpath='{.metadata.annotations}' 2>/dev/null | grep -q "nameserver"; then
+# Verify the manual job was created from the correct cronjob via ownerReferences
+OWNER_NAME=$(kubectl get job nameserver-resolver -o jsonpath='{.metadata.ownerReferences[?(@.kind=="CronJob")].name}' 2>/dev/null)
+if [ "$OWNER_NAME" == "nameserver" ]; then
   log "PASS" "Job nameserver-resolver was created from the nameserver CronJob."
   ((PASS_COUNT++))
 else
-  log "FAIL" "Job nameserver-resolver does not appear to be created from the nameserver CronJob."
+  log "FAIL" "Job nameserver-resolver does not appear to be created from the nameserver CronJob (ownerReference: '$OWNER_NAME')."
   ((FAIL_COUNT++))
 fi
 
