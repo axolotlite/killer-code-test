@@ -16,4 +16,4 @@ In the `golden-hawk` namespace, there are three Deployments (`front`, `db`, and 
 * Identify the **labels** required by the policies
 * Apply the correct **labels** to Pods or Deployments so the policies take effect
 
-You will need to use `kubectl label <resource>
+You will need to use `kubectl label <resource> <key>=<value>` to label the target deployment

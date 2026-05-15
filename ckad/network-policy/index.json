@@ -24,8 +24,28 @@
                     "target": "/tmp/init/"
                 },
                 {
-                    "file": "deployments.yaml",
-                    "target": "~/"
+                    "file": "front.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "db.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "backend.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "front.yaml",
+                    "target": "~/deployments/"
+                },
+                {
+                    "file": "db.yaml",
+                    "target": "~/deployments/"
+                },
+                {
+                    "file": "backend.yaml",
+                    "target": "~/deployments/"
                 },
                 {
                     "file": "default-deny.yaml",
