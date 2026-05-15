@@ -17,4 +17,5 @@ You have been given a set of Kubernetes manifests in `~/deploy/` that were writt
 * Remove **PodSecurityPolicy** resources (removed in v1.25+)
 * Deploy all corrected manifests to the `garland` namespace
 
-You can use the `kubectl apply -f <dir> --server-side --dry-run` to find faulty manifests.  
+You can use the `kubectl apply -f <dir> --dry-run=server` to find faulty manifests.  
+Then use `kubectl explain <resource>` to find the correct api and fix the manifest.  

@@ -1,0 +1,52 @@
+{
+    "title": "NetworkPolicy - Pod Label Configuration",
+    "description": "Label Pods to activate pre-existing NetworkPolicies for traffic restriction",
+    "details": {
+        "intro": {
+            "text": "intro.md",
+            "foreground": "ssh.sh",
+            "background": "init.sh"
+        },
+        "steps": [
+            {
+                "text": "step1/text.md",
+                "verify": "step1/verify.sh"
+            }
+        ],
+        "assets": {
+            "host01": [
+                {
+                    "file": "utility.sh",
+                    "target": "/var/run/kc-internal/scenario-service/"
+                },
+                {
+                    "file": "namespace.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "deployments.yaml",
+                    "target": "~/"
+                },
+                {
+                    "file": "default-deny.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "allow-front-db.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "default-deny.yaml",
+                    "target": "~/network-policies"
+                },
+                {
+                    "file": "allow-front-db.yaml",
+                    "target": "~/network-policies"
+                }
+            ]
+        }
+    },
+    "backend": {
+        "imageid": "kubernetes-kubeadm-2nodes"
+    }
+}

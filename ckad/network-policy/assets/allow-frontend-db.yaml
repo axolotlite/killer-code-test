@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-front-db
+  namespace: golden-hawk
+spec:
+  podSelector:
+    matchLabels:
+      role: restricted
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          name: front
+    - podSelector:
+        matchLabels:
+          name: db
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          name: front
+    - podSelector:
+        matchLabels:
+          name: db
+  - to:
+    - namespaceSelector: {}
+      podSelector:
+        matchLabels:
+          k8s-app: kube-dns
+    ports:
+    - protocol: UDP
+      port: 53
