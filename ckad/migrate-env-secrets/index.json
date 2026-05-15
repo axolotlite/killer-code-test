@@ -1,0 +1,35 @@
+{
+    "title": "Secrets - Migrate Environment Variables",
+    "description": "Migrate hardcoded environment variables to Kubernetes Secrets",
+    "details": {
+        "intro": {
+            "text": "intro.md",
+            "foreground": "ssh.sh"
+        },
+        "steps": [
+            {
+                "text": "step1/text.md",
+                "verify": "step1/verify.sh"
+            }
+        ],
+        "assets": {
+            "host01": [
+                {
+                    "file": "utility.sh",
+                    "target": "/var/run/kc-internal/scenario-service/"
+                },
+                {
+                    "file": "deployment.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "namespace.yaml",
+                    "target": "/tmp/init/"
+                }
+            ]
+        }
+    },
+    "backend": {
+        "imageid": "kubernetes-kubeadm-2nodes"
+    }
+}
