@@ -29,6 +29,11 @@
         "title": "Learning - Kubernetes Wargames",
         "path": "kubernetes-wargames",
         "description": "Learn kubernetes by breaking it"
+      },
+      {
+        "title": "CKAD - Difficult Questions",
+        "path": "ckad",
+        "description": "Solve some specific CKAD questions"
       }
     ]
   }
