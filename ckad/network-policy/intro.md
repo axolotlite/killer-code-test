@@ -16,17 +16,4 @@ In the `golden-hawk` namespace, there are three Deployments (`front`, `db`, and 
 * Identify the **labels** required by the policies
 * Apply the correct **labels** to Pods or Deployments so the policies take effect
 
-You can use the documentation:
-- https://kubernetes.io/docs/concepts/services-networking/network-policies/
-
-keywords:
-* `NetworkPolicy`
-* `podSelector`
-* `ingress`
-* `egress`
-
-Page `Network Policies`
-page keywords:
-* `podSelector`
-* `The NetworkPolicy resource`
-* `Behavior of to and from selectors`
+You will need to use `kubectl label <resource>

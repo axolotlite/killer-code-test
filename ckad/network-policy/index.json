@@ -32,7 +32,7 @@
                     "target": "/tmp/init/"
                 },
                 {
-                    "file": "allow-front-db.yaml",
+                    "file": "allow-frontend-db.yaml",
                     "target": "/tmp/init/"
                 },
                 {
@@ -40,7 +40,7 @@
                     "target": "~/network-policies"
                 },
                 {
-                    "file": "allow-front-db.yaml",
+                    "file": "allow-frontend-db.yaml",
                     "target": "~/network-policies"
                 }
             ]
