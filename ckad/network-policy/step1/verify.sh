@@ -43,17 +43,7 @@ else
   ((FAIL_COUNT++))
 fi
 
-# Task 3: frontend namespace has tier=frontend label
-FRONT_NS_TIER=$(kubectl get namespace "$NS_FRONT" -o jsonpath='{.metadata.labels.tier}' 2>/dev/null)
-if [ "$FRONT_NS_TIER" == "frontend" ]; then
-  log "PASS" "Namespace $NS_FRONT has label tier=frontend"
-  ((PASS_COUNT++))
-else
-  log "FAIL" "Namespace $NS_FRONT missing label tier=frontend (found: '$FRONT_NS_TIER')"
-  ((FAIL_COUNT++))
-fi
-
-# Task 4: front deployment (in frontend ns) has name=front in pod template
+# Task 3: front deployment (in frontend ns) has name=front in pod template
 FRONT_TMPL_NAME=$(kubectl get deployment front -n "$NS_FRONT" -o jsonpath='{.spec.template.metadata.labels.name}' 2>/dev/null)
 if [ "$FRONT_TMPL_NAME" == "front" ]; then
   log "PASS" "Deployment front ($NS_FRONT) pod template has label name=front"
@@ -78,17 +68,7 @@ else
   ((FAIL_COUNT++))
 fi
 
-# Task 5: database namespace has tier=database label
-DB_NS_TIER=$(kubectl get namespace "$NS_DB" -o jsonpath='{.metadata.labels.tier}' 2>/dev/null)
-if [ "$DB_NS_TIER" == "database" ]; then
-  log "PASS" "Namespace $NS_DB has label tier=database"
-  ((PASS_COUNT++))
-else
-  log "FAIL" "Namespace $NS_DB missing label tier=database (found: '$DB_NS_TIER')"
-  ((FAIL_COUNT++))
-fi
-
-# Task 6: db deployment (in database ns) has name=db in pod template
+# Task 4: db deployment (in database ns) has name=db in pod template
 DB_TMPL_NAME=$(kubectl get deployment db -n "$NS_DB" -o jsonpath='{.spec.template.metadata.labels.name}' 2>/dev/null)
 if [ "$DB_TMPL_NAME" == "db" ]; then
   log "PASS" "Deployment db ($NS_DB) pod template has label name=db"

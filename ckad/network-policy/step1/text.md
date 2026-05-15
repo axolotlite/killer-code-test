@@ -2,7 +2,7 @@
 
 ### Tasks
 
-You **cannot create, modify, or delete** any NetworkPolicy. You may only **label** Namespaces, Pods, or Deployments.
+You **cannot create, modify, or delete** any NetworkPolicy. You may only **label** Pods or Deployments.
 
 You will find a copy of the Network Policy manifests at `~/network-policies/`, these are provided for you to read, DO NOT APPLY or CHANGE them.
 
@@ -24,13 +24,9 @@ Configure the environment so that `backend` can **only** send and receive traffi
 
    * Apply the label the `default-deny` and `allow-front-db` policies expect on the restricted Pod
 
-3. **Label the `frontend` namespace** so it matches the `namespaceSelector` in the allow-rules
+3. **Label the `front` Deployment** (in `frontend`) so it matches the `podSelector` in the allow-rules
 
-4. **Label the `front` Deployment** (in `frontend`) so it matches the `podSelector` in the allow-rules
-
-5. **Label the `database` namespace** so it matches the `namespaceSelector` in the allow-rules
-
-6. **Label the `db` Deployment** (in `database`) so it matches the `podSelector` in the allow-rules
+4. **Label the `db` Deployment** (in `database`) so it matches the `podSelector` in the allow-rules
 
 **Note:** Label the **Deployment's pod template** (not just the running Pod) so pod labels persist across restarts.
 
