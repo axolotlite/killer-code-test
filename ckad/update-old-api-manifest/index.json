@@ -1,0 +1,51 @@
+{
+    "title": "Update Deprecated API Manifests",
+    "description": "Fix deprecated Kubernetes API versions in old manifests and deploy them",
+    "details": {
+        "intro": {
+            "text": "intro.md",
+            "foreground": "ssh.sh"
+        },
+        "steps": [
+            {
+                "text": "step1/text.md",
+                "verify": "step1/verify.sh"
+            },
+            {
+                "text": "step2/text.md",
+                "verify": "step2/verify.sh"
+            },
+            {
+                "text": "step3/text.md",
+                "verify": "step3/verify.sh"
+            }
+        ],
+        "assets": {
+            "host01": [
+                {
+                    "file": "utility.sh",
+                    "target": "/var/run/kc-internal/scenario-service/"
+                },
+                {
+                    "file": "namespace.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "workloads-old.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "ingress-old.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "rbac-psp-old.yaml",
+                    "target": "/tmp/init/"
+                }
+            ]
+        }
+    },
+    "backend": {
+        "imageid": "kubernetes-kubeadm-2nodes"
+    }
+}

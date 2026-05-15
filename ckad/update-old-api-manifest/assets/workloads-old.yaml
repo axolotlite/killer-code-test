@@ -1,0 +1,63 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: web
+  namespace: garland
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1beta1
+kind: DaemonSet
+metadata:
+  name: log-collector
+  namespace: garland
+spec:
+  template:
+    metadata:
+      labels:
+        app: log-collector
+    spec:
+      containers:
+      - name: fluentd
+        image: fluentd:v1.16
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cleanup
+  namespace: garland
+spec:
+  schedule: "0 3 * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: cleanup
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: busybox
+            image: busybox:stable
+            command: ["sh", "-c", "echo cleanup done"]
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: web-pdb
+  namespace: garland
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: web
