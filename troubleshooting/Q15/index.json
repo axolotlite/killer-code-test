@@ -1,25 +1,39 @@
 {
-    "title": "Troubleshoot Static Manifests - ETCD",
-    "description": "Troubleshooting the failing Kube-api Pod",
-    "details": {
-      "intro": {
-        "text": "intro.md",
-        "foreground": "ssh.sh"
-      },
-      "steps": [
-        {
-            "text": "step1/text.md",
-            "verify": "step1/verify.sh"
-        }
-      ],
-      "assets": {
-        "host01": [
-            {"file": "utility.sh", "target": "/var/run/kc-internal/scenario-service/"},
-            {"file": "kube-apiserver.yaml", "target": "/etc/kubernetes/manifests/"}
-        ]
-      }
+  "title": "Troubleshoot Static Manifests - ETCD",
+  "description": "Troubleshooting the failing Kube-api Pod",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "foreground": "ssh.sh"
     },
-    "backend": {
-      "imageid": "kubernetes-kubeadm-2nodes"
+    "steps": [
+      {
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      }
+    ],
+    "assets": {
+      "host01": [
+        {
+          "file": "utility.sh",
+          "target": "/var/run/kc-internal/scenario-service/"
+        },
+        {
+          "file": "kube-apiserver.yaml",
+          "target": "/etc/kubernetes/manifests/"
+        },
+        {
+          "file": "kube-controller-manager.yaml",
+          "target": "/etc/kubernetes/manifests/"
+        },
+        {
+          "file": "kube-scheduler.yaml",
+          "target": "/etc/kubernetes/manifests/"
+        }
+      ]
     }
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-2nodes"
+  }
 }
