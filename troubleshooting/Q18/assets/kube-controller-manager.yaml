@@ -46,10 +46,10 @@ spec:
       protocol: TCP
     resources:
       requests:
-        cpu: 4000m
+        cpu: 2m
         memory: 2Mi
       limits:
-        cpu: 4000m
+        cpu: 2m
         memory: 2Mi
     startupProbe:
       failureThreshold: 24
