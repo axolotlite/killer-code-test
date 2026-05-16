@@ -47,10 +47,10 @@ spec:
     resources:
       requests:
         cpu: 4000m
-        memory: 2Mi
+        memory: 40Mi
       limits:
         cpu: 4000m
-        memory: 2Mi
+        memory: 40Mi
     startupProbe:
       failureThreshold: 24
       httpGet:
