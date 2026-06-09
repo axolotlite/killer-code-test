@@ -1,0 +1,26 @@
+{
+    "title": "Deploying a containerized 3 tier app",
+    "description": "Deploy and configure the frontend, backend and database for a 3-tier app",
+    "details": {
+        "intro": {
+            "text": "intro.md"
+        },
+        "steps": [
+            {
+                "text": "step1/text.md",
+                "verify": "step1/verify.sh"
+            }
+        ],
+        "assets": {
+            "host01": [
+                {
+                    "file": "utility.sh",
+                    "target": "/var/run/kc-internal/scenario-service/"
+                }
+            ]
+        }
+    },
+    "backend": {
+        "imageid": "kubernetes-kubeadm-2nodes"
+    }
+}

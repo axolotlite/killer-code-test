@@ -1,0 +1,23 @@
+{
+  "title": "Kubernetes Wargame - Worker Kubelet",
+  "description": "Disable the kubelet on a worker node",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "text": "step1/text.md"
+      },
+      {
+        "text": "step2/text.md"
+      },
+      {
+        "text": "step3/text.md"
+      }
+    ]
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-2nodes"
+  }
+}

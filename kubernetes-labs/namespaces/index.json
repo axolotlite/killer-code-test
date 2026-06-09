@@ -1,0 +1,46 @@
+{
+  "title": "Kubernetes Wargame - Namespaces and Workloads",
+  "description": "Delete all the workloads protecting the static manifests",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "init.sh"
+    },
+    "steps": [
+      {
+        "text": "step1/text.md"
+      },
+      {
+        "text": "step2/text.md"
+      },
+      {
+        "text": "step3/text.md"
+      },
+      {
+        "text": "step4/text.md"
+      },
+      {
+        "text": "step5/text.md"
+      }
+    ],
+    "assets": {
+      "host01": [
+        {
+          "file": "01-namespaces.yaml",
+          "target": "/tmp/init/"
+        },
+        {
+          "file": "02-scripts.yaml",
+          "target": "/tmp/init/"
+        },
+        {
+          "file": "03-workloads.yaml",
+          "target": "/tmp/init/"
+        }
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node-4GB"
+  }
+}

@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: manifest-guard
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: manifest-elite-guard
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: manifest-pawn-guard
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hidden-guard

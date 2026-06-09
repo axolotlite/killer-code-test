@@ -1,39 +1,39 @@
 {
-    "items": [
-      {
-        "title": "CKA Domain - Cluster Architecture",
-        "path": "cluster-arch",
-        "description": "Focus: cluster bootstrap, CNI, CRI, API extensions, control plane components"
-      },
-      {
-        "title": "CKA Domain - Services & Networking",
-        "path": "service-networking",
-        "description": "Focus: Services, Ingress, Gateway API, TLS, NetworkPolicy"
-      },
-      {
-        "title": "CKA Domain - Storage",
-        "path": "storage",
-        "description": "Focus: PV, PVC, StorageClass lifecycle and their configuration"
-      },
-      {
-        "title": "CKA Domain - Cluster Troubleshooting",
-        "path": "troubleshooting",
-        "description": "Focus: Control plane failures, component debugging, cluster repair"
-      },
-      {
-        "title": "CKA Domain - Workloads & Scheduling",
-        "path": "workload-scheduling",
-        "description": "Focus: Pod configuration, resource management, scaling, placement control"
-      },
-      {
-        "title": "Learning - Kubernetes Wargames",
-        "path": "kubernetes-wargames",
-        "description": "Learn kubernetes by breaking it"
-      },
-      {
-        "title": "CKAD - Difficult Questions",
-        "path": "ckad",
-        "description": "Solve some specific CKAD questions"
-      }
-    ]
-  }
+  "items": [
+    {
+      "title": "CKA Domain - Cluster Architecture",
+      "path": "cluster-arch",
+      "description": "Focus: cluster bootstrap, CNI, CRI, API extensions, control plane components"
+    },
+    {
+      "title": "CKA Domain - Services & Networking",
+      "path": "service-networking",
+      "description": "Focus: Services, Ingress, Gateway API, TLS, NetworkPolicy"
+    },
+    {
+      "title": "CKA Domain - Storage",
+      "path": "storage",
+      "description": "Focus: PV, PVC, StorageClass lifecycle and their configuration"
+    },
+    {
+      "title": "CKA Domain - Cluster Troubleshooting",
+      "path": "troubleshooting",
+      "description": "Focus: Control plane failures, component debugging, cluster repair"
+    },
+    {
+      "title": "CKA Domain - Workloads & Scheduling",
+      "path": "workload-scheduling",
+      "description": "Focus: Pod configuration, resource management, scaling, placement control"
+    },
+    {
+      "title": "Learning - Kubernetes",
+      "path": "kubernetes-labs",
+      "description": "Learn kubernetes by through different means"
+    },
+    {
+      "title": "CKAD - Difficult Questions",
+      "path": "ckad",
+      "description": "Solve some specific CKAD questions"
+    }
+  ]
+}
