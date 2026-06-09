@@ -1,5 +1,5 @@
-**3 Tier App Deployment Part 1: Manifest and resource creation**
-This lab will guide you through deploying a 3 tier application in kubernetes.  
+**3 Tier App Deployment Part 2: Service Creation**
+This lab will guide you through creating Services for the applications and for the user to access these applications.  
 
 ## Architecture
 
@@ -16,8 +16,9 @@ This lab will guide you through deploying a 3 tier application in kubernetes.
 - **Database**: PostgreSQL 16 initialized with dummy data via SQL script (no app migrations)
 
 ## Your tasks
-You'll have to go through the steps / processes of deploying these applications on a kubernetes cluster.  
+You'll have to go through the steps / processes of exposing these applications for the user.  
 These steps are:
-* Creating manifests for the applications
-* Configuring the resource and limits for each resource
-* Modifying a Deployment manifest into a stateful set
+* Expose the backend as ClusterIP
+* Expose the database as a ClusterIP
+* Expose the frontend as NodePort
+* Access the exposed frontend
