@@ -12,11 +12,14 @@
             },
             {
                 "text": "step2/text.md",
-                "verify": "step1/verify.sh"
+                "verify": "step2/verify.sh"
             },
             {
                 "text": "step3/text.md",
-                "verify": "step1/verify.sh"
+                "verify": "step3/verify.sh"
+            },
+            {
+                "text": "step4/text.md"
             }
         ],
         "assets": {
