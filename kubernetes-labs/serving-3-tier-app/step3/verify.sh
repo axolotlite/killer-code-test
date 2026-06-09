@@ -17,6 +17,6 @@ check_k8s_resource deployment "store-frontend" "$NS" "" '{.spec.template.spec.co
 check_k8s_resource service "frontend-svc" "$NS"
 check_k8s_resource service "frontend-svc" "$NS" "" '{.spec.type}' "NodePort"
 check_k8s_resource service "frontend-svc" "$NS" "" '{.spec.ports[0].port}' "8080"
-check_k8s_resource service "frontend-svc" "$NS" "" '{.spec.ports[0].nodePort}' "38080"
+check_k8s_resource service "frontend-svc" "$NS" "" '{.spec.ports[0].nodePort}' "31080"
 
 print_summary_and_exit

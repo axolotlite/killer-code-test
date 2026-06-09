@@ -11,4 +11,6 @@ Expose the backend **Deployment** through a **Service**:
 
 **Hint:**  
 Use the following command to create a yaml file  
-`kubectl expose StatefulSet <deployment_name> --type <ServiceType> --port <port> --target-port <target port>` 
+`kubectl create svc clusterip <service-name> --tcp <port>:<target-port>`   
+Next define the selector for the service  
+`kubectl set selector svc <service-name> <key>=<value>`

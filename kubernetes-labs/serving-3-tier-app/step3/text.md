@@ -7,7 +7,7 @@ Expose the backend **Deployment** through a **Service**:
 * Name: `frontend-svc`
 * Type: `NodePort`
 * port: `8080`
-* NodePort: `38080`  
+* NodePort: `31080`  
 * 
 **Hint:**  
 Use the following command to create a yaml file  
