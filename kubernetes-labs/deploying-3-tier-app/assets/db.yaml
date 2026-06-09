@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: store-db
+  name: store-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: store-db
+  template:
+    metadata:
+      labels:
+        app: store-db
+    spec:
+      containers:
+      - image: postgres:14.23-alpine3.23
+        name: dummy-store-db
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "10m"
+          limits:
+            memory: "500Mi"
+            cpu: "40m"
+status: {}

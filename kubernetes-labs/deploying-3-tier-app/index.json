@@ -9,6 +9,14 @@
             {
                 "text": "step1/text.md",
                 "verify": "step1/verify.sh"
+            },
+            {
+                "text": "step2/text.md",
+                "verify": "step1/verify.sh"
+            },
+            {
+                "text": "step3/text.md",
+                "verify": "step1/verify.sh"
             }
         ],
         "assets": {
