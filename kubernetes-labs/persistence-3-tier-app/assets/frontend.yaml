@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: store-frontend
+  name: store-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: store-frontend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: store-frontend
+    spec:
+      containers:
+      - image: ghcr.io/axolotlite/killer-code-test/managed-app/dummy-store-frontend
+        name: dummy-store-frontend
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "10m"
+          limits:
+            memory: "500Mi"
+            cpu: "40m"
+status: {}

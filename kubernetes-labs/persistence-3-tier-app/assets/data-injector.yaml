@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-injector
+  labels:
+    app: data-injector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-injector
+  template:
+    metadata:
+      labels:
+        app: data-injector
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:14.23-alpine3.23
+        env:
+        - name: POSTGRES_DB
+          value: "appdb"
+        - name: POSTGRES_USER
+          value: "appuser"
+        - name: POSTGRES_PASSWORD
+          value: "apppassword"
+        volumeMounts:
+        - name: db-data
+          mountPath: /var/lib/postgresql/data
+        - name: init-sql
+          mountPath: /docker-entrypoint-initdb.d
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "10m"
+          limits:
+            memory: "500Mi"
+            cpu: "60m"
+      volumes:
+      - name: db-data
+        persistentVolumeClaim:
+          claimName: db-data-pvc
+      - name: init-sql
+        configMap:
+          name: db-init-sql

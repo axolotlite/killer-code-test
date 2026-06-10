@@ -1,0 +1,87 @@
+{
+    "title": "Configuring & Persisting a 3-tier app",
+    "description": "Configure environment variables and persistent storage for a 3-tier application",
+    "details": {
+        "intro": {
+            "text": "intro.md",
+            "background": "init.sh"
+        },
+        "steps": [
+            {
+                "text": "step1/text.md",
+                "verify": "step1/verify.sh"
+            },
+            {
+                "text": "step2/text.md",
+                "verify": "step2/verify.sh"
+            },
+            {
+                "text": "step3/text.md",
+                "verify": "step3/verify.sh"
+            },
+            {
+                "text": "step4/text.md",
+                "verify": "step4/verify.sh"
+            },
+            {
+                "text": "step5/text.md",
+                "verify": "step5/verify.sh"
+            },
+            {
+                "text": "step6/text.md",
+                "verify": "step6/verify.sh"
+            }
+        ],
+        "assets": {
+            "host01": [
+                {
+                    "file": "utility.sh",
+                    "target": "/var/run/kc-internal/scenario-service/"
+                },
+                {
+                    "file": "init.sql",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "data-injector.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "db-pv.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "db-pvc.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "backend.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "db.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "frontend.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "backend-svc.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "db-svc.yaml",
+                    "target": "/tmp/init/"
+                },
+                {
+                    "file": "frontend-svc.yaml",
+                    "target": "/tmp/init/"
+                }
+            ]
+        }
+    },
+    "backend": {
+        "imageid": "kubernetes-kubeadm-2nodes"
+    }
+}
