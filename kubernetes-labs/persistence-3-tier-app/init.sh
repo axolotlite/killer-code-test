@@ -23,6 +23,7 @@ kubectl exec deploy/data-injector -- psql -U appuser -d appdb -c "SELECT COUNT(*
 
 echo "==> Removing data injector deployment (PV retained)..."
 kubectl delete deployment data-injector --wait=true
+kubectl delete pvc db-data-pvc
 
 echo "==> Deploying application resources..."
 kubectl apply -f "$INIT_DIR/backend.yaml"
