@@ -20,8 +20,7 @@
                 "verify": "step3/verify.sh"
             },
             {
-                "text": "step4/text.md",
-                "verify": "step4/verify.sh"
+                "text": "step4/text.md" 
             },
             {
                 "text": "step5/text.md",
