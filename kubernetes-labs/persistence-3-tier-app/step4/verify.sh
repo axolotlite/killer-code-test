@@ -3,7 +3,7 @@
 OUTPUT_FILE="${OUTPUT_FILE:-$HOME/validation.log}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/../assets/utility.sh"
+source "$SCRIPT_DIR/utility.sh"
 
 log "INFO" "Validating Step 4: Frontend Accessible..."
 echo "" | tee -a "$OUTPUT_FILE"
